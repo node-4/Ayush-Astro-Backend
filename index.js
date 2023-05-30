@@ -14,12 +14,10 @@ app.use(cors());
 const PORT = process.env.PORT || 3002;
 const DB_URI = process.env.DB_URI;
 
-app.use("/", require("./routes/router"));
-
-app.all("*", (req, res, next) => {
-    res.send("This Route is not registered!! ❗");
+app.get("/", (req, res) => {
+    res.send("Hello World!");
 });
-
+app.use("/api/v1/", require("./routes/router"));
 app.use(globalErrorHandler);
 
 const Main = async () => {
