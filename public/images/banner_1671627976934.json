@@ -1,0 +1,1676 @@
+{
+	"info": {
+		"_postman_id": "2b79fb5f-8dd0-40f4-9090-bc4bba8f187c",
+		"name": "Lab_India",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21965866"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{        \r\n\"email\":\"nishantflyweis@gmail.com\"\r\n        \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://www.wayamapp.in/api/signin",
+							"protocol": "https",
+							"host": [
+								"www",
+								"wayamapp",
+								"in"
+							],
+							"path": [
+								"api",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/FLYWEIS/Downloads/Group 14343.png"
+								},
+								{
+									"key": "firstname",
+									"value": "riya",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "dd",
+									"type": "text"
+								},
+								{
+									"key": "relationship",
+									"value": "d",
+									"type": "text"
+								},
+								{
+									"key": "percentage",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "numberofchildren",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "childage",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "childgender",
+									"value": "female",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "India",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "delhi",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "goa",
+									"type": "text"
+								},
+								{
+									"key": "pincode",
+									"value": "22",
+									"type": "text"
+								},
+								{
+									"key": "street1",
+									"value": "nagar",
+									"type": "text"
+								},
+								{
+									"key": "street2",
+									"value": "nigam",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "hey1233@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "888888888896",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://lab-india.herokuapp.com/api/signup/user",
+							"protocol": "https",
+							"host": [
+								"lab-india",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"signup",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "varify-otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"aishwaryapbhoir@gmail.com\",\r\n    \"otp\":\"6203\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/varify-otp",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"varify-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/all-user",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"all-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single user profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjI1ZDkyNjBmOWU4MDg4NTJkY2FkNyIsImlhdCI6MTY1MDYxNDEyNSwiZXhwIjoxNjUxMjE4OTI1fQ.z0vptCuRZR5KnVwaCS0Keosybl2Vvsoogv7rqZJmv3c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://lab-india.herokuapp.com/api/user",
+							"protocol": "https",
+							"host": [
+								"lab-india",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTA3NTNlOTY0Y2YzNjhkYzViY2RiOSIsImlhdCI6MTY1NTU0NzY4MiwiZXhwIjoxNjU2MTUyNDgyfQ.-lNG49hdgiyp5cfqWoh6nkUHIqxmjSbr-30MRB-broY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Documents/twi trav.jpg"
+								},
+								{
+									"key": "firstname",
+									"value": "riya",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "dd",
+									"type": "text"
+								},
+								{
+									"key": "relationship",
+									"value": "d",
+									"type": "text"
+								},
+								{
+									"key": "percentage",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "numberofchildren",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "childage",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "childgender",
+									"value": "female",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "India",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "delhi",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "goa",
+									"type": "text"
+								},
+								{
+									"key": "pincode",
+									"value": "22",
+									"type": "text"
+								},
+								{
+									"key": "street1",
+									"value": "nagar",
+									"type": "text"
+								},
+								{
+									"key": "street2",
+									"value": "nigam",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "hey1233@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "888888888896",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4000/api/update/user",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"update",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ok@gmail.com\",\r\n    \"password\":\"ok\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/admin/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTP send on mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ok@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/email/send/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"email",
+								"send",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Password Changed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ok@gmail.com\",\r\n    \"password\":\"pp\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/change/password/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"change",
+								"password",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"ok\",\r\n    \"email\":\"ok@gmail.com\",\r\n    \"password\":\"ok\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/admin/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Setting",
+			"item": [
+				{
+					"name": "Add Setting",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"languages\":\"Hindi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/add/Setting",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"add",
+								"Setting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Setting",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"languages\":\"Hindi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/get/Setting",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"get",
+								"Setting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Setting",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"languages\":\"English\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/edit/Setting/6248e6a4442b3e5c0825cb18",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"edit",
+								"Setting",
+								"6248e6a4442b3e5c0825cb18"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/blog1.webp"
+								},
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/blog5.webp"
+								},
+								{
+									"key": "Category1",
+									"value": "data",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://lab-india.herokuapp.com/api/get/category",
+							"protocol": "https",
+							"host": [
+								"lab-india",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"get",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/blog5.webp"
+								},
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/Administrator/Desktop/png-transparent-download-save-save-on-computer-upload-file-guardar-audio-controls-ui-icons-free-icon.png"
+								},
+								{
+									"key": "category",
+									"value": "data",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://lab-india.herokuapp.com/api/add/category",
+							"protocol": "https",
+							"host": [
+								"lab-india",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"add",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/-original-imagagnfdqeqpfwb.webp"
+								},
+								{
+									"key": "category",
+									"value": "hello",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4000/api/edit/category/626130eda27918cc08e7d435",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"edit",
+								"category",
+								"626130eda27918cc08e7d435"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/delete/category/624b39d5fd27412ab153046f",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"delete",
+								"category",
+								"624b39d5fd27412ab153046f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trending",
+			"item": [
+				{
+					"name": "Get Trending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://lab-india-new.herokuapp.com/api/get/Trending",
+							"protocol": "https",
+							"host": [
+								"lab-india-new",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"get",
+								"Trending"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Trending",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/-original-imagagnfgh6ed7tp.webp"
+								},
+								{
+									"key": "trending",
+									"value": "Trendingpoem",
+									"type": "text"
+								},
+								{
+									"key": "story_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://lab-india.herokuapp.com/api/add/Trending",
+							"protocol": "https",
+							"host": [
+								"lab-india",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"add",
+								"Trending"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Trending",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/images (8).jpg"
+								},
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/images (9).jpg"
+								},
+								{
+									"key": "Trending1",
+									"value": "Best poems",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4000/api/edit/Trending/624b3fb4b60f3f4c867a1f78",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"edit",
+								"Trending",
+								"624b3fb4b60f3f4c867a1f78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Trending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/delete/Trending/624b3fb4b60f3f4c867a1f78",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"delete",
+								"Trending",
+								"624b3fb4b60f3f4c867a1f78"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Latest",
+			"item": [
+				{
+					"name": "Get Latest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/get/Latest",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"get",
+								"Latest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Latest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/img.png"
+								},
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/img_1.png"
+								},
+								{
+									"key": "Latest1",
+									"value": "Latest",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4000/api/add/Latest",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"add",
+								"Latest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Latest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/images (8).jpg"
+								},
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Downloads/images (7).jpg"
+								},
+								{
+									"key": "Latest1",
+									"value": "Latest Release",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4000/api/edit/Latest/624b4e0a9eb25e3330ac1d2f",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"edit",
+								"Latest",
+								"624b4e0a9eb25e3330ac1d2f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Latest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/delete/Latest/624b4e0a9eb25e3330ac1d2f",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"delete",
+								"Latest",
+								"624b4e0a9eb25e3330ac1d2f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Package",
+			"item": [
+				{
+					"name": "Admin Get Package",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/get/Package",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"get",
+								"Package"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Edit Package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"package_name\":\"silver\",\r\n        \"package_type\":\"monthly\",\r\n        \"ongoing_plan\":\"3 Screen\",\r\n        \"hd\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/edit/Package/624b8bdbcd9d15f2e23163d1",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"edit",
+								"Package",
+								"624b8bdbcd9d15f2e23163d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Delete Package",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/delete/Package/624b8bdbcd9d15f2e23163d1",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"delete",
+								"Package",
+								"624b8bdbcd9d15f2e23163d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Add Package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"package_name\":\"gold\",\r\n        \"package_type\":\"yearly\",\r\n        \"package_amount\":\"10\",\r\n        \"package_description\":\"Purchase gold  plan\",\r\n        \"ongoing_plan\":\"3 Screen\",\r\n        \"hd\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/add/Package",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"add",
+								"Package"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rating Review",
+			"item": [
+				{
+					"name": "Get Rating Review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/get/Rating",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"get",
+								"Rating"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Rating Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjc5N2M4YjcxYmJiNTE1NTBiNzczNCIsImlhdCI6MTY1MTA0MDIwNiwiZXhwIjoxNjUxNjQ1MDA2fQ.puinR6vl9rSVxzPAn3ZSxpztljFybgsEBMtyXjKVRMA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"User\":\"624c966ef1f3b1fa0f815b64\",\r\n    \"Package\":\"624cc3f1ce4aba2282ce1aac\",\r\n    \"review\":\"Great\",\r\n    \"rating\":\"3\",\r\n    \"active\":\"true\",\r\n    \"modifiedOn\":\"5 april\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://lab-india.herokuapp.com/api/add/Rating/6268e12f8eedee41faa53988",
+							"protocol": "https",
+							"host": [
+								"lab-india",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"add",
+								"Rating",
+								"6268e12f8eedee41faa53988"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:4000/api/single/story/Rating/62614afaadb0c8ed018bc8fe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/single/story/Rating/62614afaadb0c8ed018bc8fe",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"single",
+								"story",
+								"Rating",
+								"62614afaadb0c8ed018bc8fe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:4000/api/single/Rating/6262a716eeb9cfc460c655fd",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/single/Rating/6262a716eeb9cfc460c655fd",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"single",
+								"Rating",
+								"6262a716eeb9cfc460c655fd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Story",
+			"item": [
+				{
+					"name": "add Story",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTczNzE4NjY4YmM1ZDgwYzc5ZjBmZiIsImlhdCI6MTY1MjA4OTYyNiwiZXhwIjoxNjUyNjk0NDI2fQ.u74vsftxvhxSRQHHpmygHgMzvPE7pDcR4DrI-vGMUrg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"SHABDAKHEL\",\r\n    \"story\":\"(मिनूच्या आवाजात) अनेक अक्षर एकत्र आली की शब्द तयार होतो हे तर तुला माहित आहेच.म्हणजे बघ हं! अ.....ने....क अशी तीन अक्षरं एकत्र आली आणि &#39;अनेक&#39; हा शब्द तयार झाला .मग असे किती अक्षरी शब्द असू शकतात? अगदी एक अक्षरी सुध्दा असतात बरं का! तू,मी,ती,ही,हा.....असे बरेच! पण आज आपण शोधायचे आहेत दोन अक्षरी शब्द!त्यात अजून एक गंमत आहे . तुला सूर्य काढता येतो का?म्हणजे येतच असणार. तर.....त्या सूर्यात लिही &#39;रा&#39; आणि त्याच्या प्रत्येक किरणावर लिहा असं एक अक्षर की जे लिहीलं की दोन अक्षरी शब्द तयार होईल.म्हणजे किरणावर &#39;जा&#39; लिहा की तयार झाला राजा! राजा आला ,आता लिहा &#39;णी&#39; !बघ बरं &#39;राणी&#39; पण आली. आता त्या मध्यभागी असलेल्या &#39;रा&#39; ला काय काय जोडता येतंय याचा विचार कर बरं! मला तर बुवा रान,राठ, राग......सुचलं!अशी  भरपूर अक्षरं जोड आणि किरणं काढा. आता सांगा बरं, तुझ्या सूर्याला किरणं किती? हा खेळ आई-बाबा मित्रमैत्रीणी कोणाही बरोबर आणि कुठेही खेळता येईल ना?\",\r\n    \"storyImg\":\"https://lab-india-new.herokuapp.com/public/story/story1664260816050.jpg\",\r\n    \"storyAudio\":\"https://lab-india-new.herokuapp.com/public/storyAudio/storyAudio1664260852178.mp3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/story",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"story"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Story latest",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://lab-india-new.herokuapp.com/api/story",
+							"protocol": "https",
+							"host": [
+								"lab-india-new",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"story"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Story",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTczNzE4NjY4YmM1ZDgwYzc5ZjBmZiIsImlhdCI6MTY2NDE4MzQ3MywiZXhwIjoxNjY0Nzg4MjczfQ.wyrbCRoHh-Wj8z1j-r2xO2fAbWBqyARTqPd5TjTDobE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"updated SHABDAKHEL qwrtt \",\r\n    \"story\":\"(मिनूच्या आवाजात) अनेक अक्षर एकत्र आली की शब्द तयार होतो हे तर तुला माहित आहेच.म्हणजे बघ हं! अ.....ने....क अशी तीन अक्षरं एकत्र आली आणि &#39;अनेक&#39; हा शब्द तयार झाला .मग असे किती अक्षरी शब्द असू शकतात? अगदी एक अक्षरी सुध्दा असतात बरं का! तू,मी,ती,ही,हा.....असे बरेच! पण आज आपण शोधायचे आहेत दोन अक्षरी शब्द!त्यात अजून एक गंमत आहे . तुला सूर्य काढता येतो का?म्हणजे येतच असणार. तर.....त्या सूर्यात लिही &#39;रा&#39; आणि त्याच्या प्रत्येक किरणावर लिहा असं एक अक्षर की जे लिहीलं की दोन अक्षरी शब्द तयार होईल.म्हणजे किरणावर &#39;जा&#39; लिहा की तयार झाला राजा! राजा आला ,आता लिहा &#39;णी&#39; !बघ बरं &#39;राणी&#39; पण आली. आता त्या मध्यभागी असलेल्या &#39;रा&#39; ला काय काय जोडता येतंय याचा विचार कर बरं! मला तर बुवा रान,राठ, राग......सुचलं!अशी  भरपूर अक्षरं जोड आणि किरणं काढा. आता सांगा बरं, तुझ्या सूर्याला किरणं किती? हा खेळ आई-बाबा मित्रमैत्रीणी कोणाही बरोबर आणि कुठेही खेळता येईल ना?\",\r\n    \"storyImg\":\"https://lab-india-new.herokuapp.com/public/story/story1664260816050.jpg\",\r\n    \"storyAudio\":\"https://lab-india-new.herokuapp.com/public/storyAudio/storyAudio1664260852178.mp3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://lab-india-new.herokuapp.com/api/story/6332f2439ec8f79eb69cd149",
+							"protocol": "https",
+							"host": [
+								"lab-india-new",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"story",
+								"6332f2439ec8f79eb69cd149"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Story",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTczNzE4NjY4YmM1ZDgwYzc5ZjBmZiIsImlhdCI6MTY2NTEyMzY4NSwiZXhwIjoxNjY1NzI4NDg1fQ.Dg-LfaPQDjQeVKguS7CuRhvdiROwxcJLv7eSwmfbtrQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost:4000/api/story/633ec72b55dba4669e8bd128",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"story",
+								"633ec72b55dba4669e8bd128"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single Story",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://lab-india-new.herokuapp.com/api/get-single-story/63329b618660f9c3441eb487",
+							"protocol": "https",
+							"host": [
+								"lab-india-new",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"get-single-story",
+								"63329b618660f9c3441eb487"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "popular stories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://lab-india-new.herokuapp.com/api/story/popular",
+							"protocol": "https",
+							"host": [
+								"lab-india-new",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"story",
+								"popular"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://lab-india-new.herokuapp.com/api/story/trending",
+							"protocol": "https",
+							"host": [
+								"lab-india-new",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"story",
+								"trending"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set trending story",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTczNzE4NjY4YmM1ZDgwYzc5ZjBmZiIsImlhdCI6MTY1MjA4OTYyNiwiZXhwIjoxNjUyNjk0NDI2fQ.u74vsftxvhxSRQHHpmygHgMzvPE7pDcR4DrI-vGMUrg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/set-single-story/63329b618660f9c3441eb487/trending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"set-single-story",
+								"63329b618660f9c3441eb487",
+								"trending"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set popular story",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTczNzE4NjY4YmM1ZDgwYzc5ZjBmZiIsImlhdCI6MTY1MjA4OTYyNiwiZXhwIjoxNjUyNjk0NDI2fQ.u74vsftxvhxSRQHHpmygHgMzvPE7pDcR4DrI-vGMUrg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/set-single-story/63329b618660f9c3441eb487/popular",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"set-single-story",
+								"63329b618660f9c3441eb487",
+								"popular"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Populer",
+			"item": [
+				{
+					"name": "Add Populer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "populer",
+									"value": "populer",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Documents/businefy-overses-services.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/add/Populer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"add",
+								"Populer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Populer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "populer",
+									"value": "populer",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Documents/businefy-overses-services.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/get/Populer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"get",
+								"Populer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Populer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "populer",
+									"value": "populer",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "myField",
+									"type": "file",
+									"src": "/C:/Users/admin/Documents/businefy-overses-services.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/edit/Populer/62bc2fe3a53191181c50c20f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"edit",
+								"Populer",
+								"62bc2fe3a53191181c50c20f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "image upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTczNzE4NjY4YmM1ZDgwYzc5ZjBmZiIsImlhdCI6MTY1MjA4OTYyNiwiZXhwIjoxNjUyNjk0NDI2fQ.u74vsftxvhxSRQHHpmygHgMzvPE7pDcR4DrI-vGMUrg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Andriod/Downloads/labIndiaAudios/Shabdaranjan/Copy of shabdhranjan.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/image-upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"image-upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload audio",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTczNzE4NjY4YmM1ZDgwYzc5ZjBmZiIsImlhdCI6MTY1MjA4OTYyNiwiZXhwIjoxNjUyNjk0NDI2fQ.u74vsftxvhxSRQHHpmygHgMzvPE7pDcR4DrI-vGMUrg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "audio",
+							"type": "file",
+							"src": "/C:/Users/Andriod/Downloads/labIndiaAudios/Shabdaranjan/Copy of Shabdranjan 01.mp3"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/api/audio-upload",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"audio-upload"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base",
+			"value": "https://lab-india.herokuapp.com"
+		}
+	]
+}

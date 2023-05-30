@@ -1,0 +1,962 @@
+{
+	"info": {
+		"_postman_id": "7bdc1654-9254-49aa-b44f-45a799fac7ee",
+		"name": "Hogo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21965866"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "home",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userSignup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"flyweis\", \r\n    \"lastname\": \"technology\", \r\n    \"email\": \"node1@flyweis.co\",\r\n    \"mobile\": 9811145666,\r\n    \"aadhaar\": \"321654987321\",\r\n    \"address\": \"Noida sector 63\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/users/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userlogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"email\": \"node2@flyweis.com\",\r\n      \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/api/v1/users/login",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add-Business",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Name\": \"demobus\",\r\n  \"businessaddress\": \"Delhi \",\r\n  \"aadhaarNumber\": 12346444,\r\n  \"busniessnumber\": \"4655\",\r\n  \"gst\": 1235\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/business",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"business"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get -business",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/business",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"business"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUsers",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"demo\", \r\n    \"lastname\": \"technology\", \r\n    \"email\": \"node2@flyweis.com\",\r\n    \"mobile\": 9811145677,\r\n    \"address\": \"Noida sector 63\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/api/v1/users/update/6396d0b351bf27b68d5b7251",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"update",
+								"6396d0b351bf27b68d5b7251"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add_salesData",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"638dd7ea728ff87c8c1a6c0d\", \r\n    \"productId\": \"638dccc9c9a7fb56c06accd4\",\r\n    \"total\": \"5000\",\r\n    \"name\": \"Harish Kumar\",\r\n    \"salesNumber\": \"1245\",\r\n    \"salesType\": \"clothes\",\r\n    \"revison\": \"123\",\r\n    \"date\": \"2022-12-05\",\r\n    \"amount\": \"5000\",\r\n    \"due\": \"1000\",\r\n    \"remark\": \"Checks All Clothes \",\r\n     \"status\": \"open\",\r\n     \"discount\": \"500\",\r\n     \"tax\": \"500\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/sales",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GatSalesDatawhichDues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/api/v1/due",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"due"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSuplierswithDues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/supplier",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCuestomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/scuestomer",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"scuestomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "totalCuestomer Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/users/cuestomer",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"cuestomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TotalSupplierCount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/users/supplier",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddExpenses",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"demo\", \r\n    \"amount\": \"40000\", \r\n    \"split\" : true, \r\n    \"paymentMode\": \"cash\", \r\n    \"transactionDate\": \"2022-12-11\" , \r\n    \"desc\": \"Checks Data is Details \",\r\n    \"status\": \"paid\", \r\n    \"billername\": \" Sagar \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/expenses/",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"expenses",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetExpenses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/api/v1/expenses",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"expenses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateExpenses",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"demo\", \r\n    \"amount\": \"40000\", \r\n    \"split\" : true, \r\n    \"paymentMode\": \"cash\", \r\n    \"transactionDate\": \"2022-12-11\" , \r\n    \"desc\": \"Checks Data is Details \",\r\n    \"status\": \"paid\", \r\n    \"billername\": \" Sagar \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/expenses/6396c97f51bf27b68d5b7224",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"expenses",
+								"6396c97f51bf27b68d5b7224"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Demo1\",\r\n    \"amount\": 5000, \r\n    \"product\": \"Name od Product \", \r\n    \"orderStatus\": \"Cancelled\", \r\n    \"type\": \"given\", \r\n    \"paymentMathod\": \"upi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/users/payment",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PaymentsByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/users/payment/6399b8b874321fe51940634f",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"payment",
+								"6399b8b874321fe51940634f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateInvoices",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 5000, \r\n    \"address\": \"Delhi\", \r\n    \"mobile\": 9898989,\r\n    \"Status\": \"Cancelled\",\r\n    \"name\" : \"New\" ,\r\n    \"productname\": [\"demo1\", \"demo2\"],\r\n    \"price\": [250, 10],\r\n    \"quantity\": [2, 5]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/api/v1/invoice",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"invoice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllInvoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/api/v1/invoice/",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"invoice",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetInvoicesByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/invoice/639add1764b643a48a42df76",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"invoice",
+								"639add1764b643a48a42df76"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateInvoices",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"price\": [250, 18],\r\n    \"quantity\": [2, 5]\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/invoice/6399c9980e999c4e36ba66d9",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"invoice",
+								"6399c9980e999c4e36ba66d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/invoice/6399c9980e999c4e36ba66d9",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"invoice",
+								"6399c9980e999c4e36ba66d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get busniessByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/business/639c058021de57cb8bc624ae",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"business",
+								"639c058021de57cb8bc624ae"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Create-Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"flyweis\", \r\n    \"email\": \"node2flyweis.com\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/admin/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin-login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"node2flyweis.com\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/admin/login",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add-product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"clothes\", \r\n    \"qty\": \"5\", \r\n    \"unitprice\": \"50\", \r\n    \"amount\": \"250\"\r\n    \r\n       \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/product",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "productById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/product/638dccc9c9a7fb56c06accd4",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"638dccc9c9a7fb56c06accd4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGRjODY0MTI2Y2IwNTg4MGFiZDcxOCIsImlhdCI6MTY3MDQwOTIyMiwiZXhwIjoxNjcwNDk1NjIyfQ.pCQQeHIYvwTRdf1DNLJp6k1gWIVuosMTYf02zTrLnhc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/product/",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProductData",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"mobile\", \r\n    \"qty\": \"20\", \r\n    \"unitprice\": \"500\", \r\n    \"amount\": \"5000\"\r\n    \r\n       \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/product/638dce7a25d218b5046d0be1",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"638dce7a25d218b5046d0be1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllSales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/admin/sales/all",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sales",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllSuppliers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/admin/supplier",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCuestomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/admin/cuestomer",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"cuestomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllPayments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/admin/payment",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/api/v1/admin/all",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUsers",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/api/v1/admin/delete/63907130f3ce3463ca0f53ba",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"delete",
+								"63907130f3ce3463ca0f53ba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteSales",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4000/api/v1/sales/6396d8d451bf27b68d5b7260",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"sales",
+								"6396d8d451bf27b68d5b7260"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

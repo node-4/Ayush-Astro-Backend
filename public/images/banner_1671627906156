@@ -1,0 +1,2432 @@
+{
+	"info": {
+		"_postman_id": "cb2f88cb-8f93-4d71-b81d-8be11072a077",
+		"name": "nitesh_backend_collection Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21965866"
+	},
+	"item": [
+		{
+			"name": "AdminPanel",
+			"item": [
+				{
+					"name": "astrologer-details",
+					"item": [
+						{
+							"name": "get-astrologer-detalis",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5YzMxNWJiNjMwZDUwOTY5YWQ5OGMwIiwiaWF0IjoxNjcxMTgwNjU5LCJleHAiOjE2NzExOTE0NTl9.xA823Sl3kDIJxxfMZFHKHHj3eFndtuaRye5BOavLMPQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3002/admin/astro/",
+									"protocol": "http",
+									"host": [
+										"ec2-15-206-210-177",
+										"ap-south-1",
+										"compute",
+										"amazonaws",
+										"com"
+									],
+									"port": "3002",
+									"path": [
+										"admin",
+										"astro",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-astrologer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5YWI2Yzg4MWIxMjMxODYxMzIxYzEzIiwiaWF0IjoxNjcxMDkzNTUyLCJleHAiOjE2NzExMDQzNTJ9.qALTd_95B9b2QjcUZ-puqACNoIouWvjlwrjxG16SNk0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"demo1\", \r\n    \"lastName\": \"Manish\", \r\n    \"address\": \"delhi\", \r\n     \"password\": \"124567897\",\r\n    \"confirmpassword\": \"124567897\",\r\n    \"email\": \"demo@1234gmail.com\", \r\n    \"mobile\": \"123456789\", \r\n    \"country\": \"indoa\", \r\n    \"state\": \"Raj\", \r\n    \"district\": \"jai\",\r\n    \"pincode\": \"202033\",\r\n    \"desc\": \"this is my description\", \r\n    \"language\": [\"hindi\", \"English\"],\r\n     \"rashi\": \"singh\", \r\n     \"skills\":[\"Marriage Problems\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3002/admin/astro",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"admin",
+										"astro"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete-astrologer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5YWI2Yzg4MWIxMjMxODYxMzIxYzEzIiwiaWF0IjoxNjcxMDkzNTUyLCJleHAiOjE2NzExMDQzNTJ9.qALTd_95B9b2QjcUZ-puqACNoIouWvjlwrjxG16SNk0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3002/admin/astro/639addb29b250ad9e3575a62",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"admin",
+										"astro",
+										"639addb29b250ad9e3575a62"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admin-update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM2MjA1YTQ1MTBmY2IxYzgwZDUzZWU4IiwiaWF0IjoxNjY3Mzc1ODY5LCJleHAiOjE2Njc0NjIyNjl9.mPkcTDTPfBrwzFjDBU-F93J9n8ea_W7g94FZzC-86XA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mobile_Number\" :\"8907688667\",\r\n     \"email_ID\" :\"shubham@gmail.com\",\r\n     \"password\" : \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2097/adminpanel/admin-update/63622cdf66517e68665936e1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"adminpanel",
+										"admin-update",
+										"63622cdf66517e68665936e1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "kundli-details",
+					"item": [
+						{
+							"name": "add-kundli",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM2MjA1YTQ1MTBmY2IxYzgwZDUzZWU4IiwiaWF0IjoxNjY3Mzc1ODY5LCJleHAiOjE2Njc0NjIyNjl9.mPkcTDTPfBrwzFjDBU-F93J9n8ea_W7g94FZzC-86XA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Manish\",\r\n    \"gender\": \"male\",\r\n    \"DOB\": \"2022-08-13\",\r\n    \"time\" : \"05:02\",\r\n    \"place\": \"jaipur\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3002/kundli",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"kundli"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-kundli",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM2MjA1YTQ1MTBmY2IxYzgwZDUzZWU4IiwiaWF0IjoxNjY3Mzc1ODY5LCJleHAiOjE2Njc0NjIyNjl9.mPkcTDTPfBrwzFjDBU-F93J9n8ea_W7g94FZzC-86XA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3002/kundli",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"kundli"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-kundli",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM2MjA1YTQ1MTBmY2IxYzgwZDUzZWU4IiwiaWF0IjoxNjY3Mzc1ODY5LCJleHAiOjE2Njc0NjIyNjl9.mPkcTDTPfBrwzFjDBU-F93J9n8ea_W7g94FZzC-86XA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"harekrishan\",\r\n    \"action\" : \"na\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2097/adminpanel/kundli/636249268c2b0c25bf08d7dc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"adminpanel",
+										"kundli",
+										"636249268c2b0c25bf08d7dc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM2MjA1YTQ1MTBmY2IxYzgwZDUzZWU4IiwiaWF0IjoxNjY3Mzc1ODY5LCJleHAiOjE2Njc0NjIyNjl9.mPkcTDTPfBrwzFjDBU-F93J9n8ea_W7g94FZzC-86XA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3002/kundli/639b27ae2b5cac428ddb1ac4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"kundli",
+										"639b27ae2b5cac428ddb1ac4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "horoscope-details",
+					"item": [
+						{
+							"name": "add-horoscope",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2022-14-05\", \r\n    \"horoScope\": \"singh\",\r\n    \"profession\": \"student\",\r\n    \"emotions\": \"demo\",\r\n    \"health\": \"check1\",\r\n    \"travel\": \"check1\",\r\n    \"love\": \"demo\",\r\n    \"luck\": \"check2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3002/horoscope",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"horoscope"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-horoscope",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3002/horoscope",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"horoscope"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-horoscope",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3002/horoscope/639b0ad20a521f3160ad846a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"horoscope",
+										"639b0ad20a521f3160ad846a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete-horocope",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3002/horoscope/639b0ad20a521f3160ad846a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"horoscope",
+										"639b0ad20a521f3160ad846a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByIDHoroScope",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3002/horoscope/639b0af10a521f3160ad846c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"horoscope",
+										"639b0af10a521f3160ad846c"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "AstroFees",
+					"item": [
+						{
+							"name": "AddCharges",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5YWI2Yzg4MWIxMjMxODYxMzIxYzEzIiwiaWF0IjoxNjcxMDkzNTUyLCJleHAiOjE2NzExMDQzNTJ9.qALTd_95B9b2QjcUZ-puqACNoIouWvjlwrjxG16SNk0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"astroId\": \"639ae1d99b250ad9e3575a68\", \r\n    \"fees\": \"500\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3002/admin/fees/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"admin",
+										"fees",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_Name\" : \"sumit\",\r\n    \"email\" : \"node2@flyweis.com\",\r\n    \"password\" : \"1234\",\r\n    \"mobile_Number\" : \"8800694296\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3002/admin/signup",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "3002",
+							"path": [
+								"admin",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"email\" : \"node2@flyweis.com\",\r\n    \"password\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3002/admin/login-admin",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "3002",
+							"path": [
+								"admin",
+								"login-admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateWallet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"63986d1fc9f9926b0ce4d953\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/user/wallet",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"wallet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddNotification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"50% discount \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/admin/notification",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"admin",
+								"notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddSupport",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Phone\": \"9351154663\", \r\n    \"Email\": \"demo1@gmail.com\",\r\n    \"Whatsapp\": \"5656564655 \",\r\n    \"zipcode\": \"302058\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/support",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"support"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "astrologer-panel",
+			"item": [
+				{
+					"name": "specification",
+					"item": [
+						{
+							"name": "add-specifiaction",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM1MGYyMmEyYmJlYTYyMDk5N2E4MzIzIiwiaWF0IjoxNjY4NDk1Njg3LCJleHAiOjE2Njg1MDY0ODd9.UsXynpNouFx2acO6s3c0Pwft7HtAV-OBjYiyJ55OSa8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"specification\" : \"heelo\",\r\n    \"data\" : \"hhhh\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2097/specification",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"specification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-specifiaction",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "discount",
+					"item": [
+						{
+							"name": "add-discount",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM1MGYyMmEyYmJlYTYyMDk5N2E4MzIzIiwiaWF0IjoxNjY4NDk1Njg3LCJleHAiOjE2Njg1MDY0ODd9.UsXynpNouFx2acO6s3c0Pwft7HtAV-OBjYiyJ55OSa8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productName\" :\" tickettoanswer\",\r\n    \"discount\" : \"10%\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2097/discount/dis-count",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"discount",
+										"dis-count"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-discount",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjgyODgxLCJleHAiOjE2NjcyOTM2ODF9.kciv9DpoLoZGhLJnp-sXU6du2XUUxEP2sCfkjyTSbZE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/discount/",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"discount",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-discount",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/discount/dis-count",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"discount",
+										"dis-count"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "kundli",
+					"item": [
+						{
+							"name": "add-kundli",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM1MGYyMmEyYmJlYTYyMDk5N2E4MzIzIiwiaWF0IjoxNjY4NTA4OTE2LCJleHAiOjE2Njg1MTk3MTZ9.VOy5oSbHGVADbR-KtctWRWkfQncSdiwX_X9EMQ-NadA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/IT/Downloads/file_example_JPG_100kB.jpg"
+										},
+										{
+											"key": "userName",
+											"value": "rishab",
+											"type": "text"
+										},
+										{
+											"key": "action",
+											"value": "na",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2097/kundli/add-user-kundli",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"kundli",
+										"add-user-kundli"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-kundli",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjEzNjEyLCJleHAiOjE2NjcyMjQ0MTJ9.jCqNVMRDvdiDVWng-RsVLwllWtAZV6tp-H9ioEoa_WI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"Image\" :\"45\",\r\n    \"userName\": \"akshita\",\r\n    \"action\" : \"na\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/kundli/update-user-kundli/635fbe7918708108cabb09cc",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"kundli",
+										"update-user-kundli",
+										"635fbe7918708108cabb09cc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-kundli",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjkxOWUzMzYxZDIzN2ViZjMxYjM4IiwiaWF0IjoxNjY1NjQyNzc3LCJleHAiOjE2NjU2NTM1Nzd9.D1ONxbxOyA2uTHOv64Dm2BnyQq4sM819NFX-I-y4qiM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/kundli/get-user-kundli",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"kundli",
+										"get-user-kundli"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add-horoScope",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjEzNjEyLCJleHAiOjE2NjcyMjQ0MTJ9.jCqNVMRDvdiDVWng-RsVLwllWtAZV6tp-H9ioEoa_WI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"16 jan 2022\",\r\n    \"horoScope\" : \"aquaris\",\r\n    \"profession\" :\"doctor\",\r\n    \"emotion\" : \"sad\",\r\n    \"health\": \"fit\",\r\n    \"travel\" :  \"no\",\r\n    \"love\":\"no\",\r\n    \"luck\" : \"chances\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/horoscope",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"horoscope"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add-horoScope Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjEzNjEyLCJleHAiOjE2NjcyMjQ0MTJ9.jCqNVMRDvdiDVWng-RsVLwllWtAZV6tp-H9ioEoa_WI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"16 jan 2022\",\r\n    \"horoScope\" : \"aquaris\",\r\n    \"profession\" :\"doctor\",\r\n    \"emotion\" : \"sad\",\r\n    \"health\": \"fit\",\r\n    \"travel\" :  \"no\",\r\n    \"love\":\"no\",\r\n    \"luck\" : \"chances\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/horoscope",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"horoscope"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-hororscope",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjEzNjEyLCJleHAiOjE2NjcyMjQ0MTJ9.jCqNVMRDvdiDVWng-RsVLwllWtAZV6tp-H9ioEoa_WI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/horoscope",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"horoscope"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-hororscope",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjEzNjEyLCJleHAiOjE2NjcyMjQ0MTJ9.jCqNVMRDvdiDVWng-RsVLwllWtAZV6tp-H9ioEoa_WI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n       \"date\": \"16 jan 2022\",\r\n    \"horoScope\" : \"aquaris\",\r\n    \"profession\" :\"doctor\",\r\n    \"emotion\" : \"sad\",\r\n    \"health\": \"fit\",\r\n    \"travel\" :  \"no\",\r\n    \"love\":\"no\",\r\n    \"luck\" : \"chances\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/horoscope/635fbb4718708108cabb09bf",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"horoscope",
+										"635fbb4718708108cabb09bf"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add-specification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjEzNjEyLCJleHAiOjE2NjcyMjQ0MTJ9.jCqNVMRDvdiDVWng-RsVLwllWtAZV6tp-H9ioEoa_WI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"specification\" : \"prediction\",\r\n    \"data\" : \"goood to not know\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/specification",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"specification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-specification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjEzNjEyLCJleHAiOjE2NjcyMjQ0MTJ9.jCqNVMRDvdiDVWng-RsVLwllWtAZV6tp-H9ioEoa_WI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/specification",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"specification"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "chats",
+					"item": [
+						{
+							"name": "post-chats",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjAwNDk0LCJleHAiOjE2NjcyMTEyOTR9.QJ2O5kni1AkQtt_fEK2f0NT_9hTNaucmDQvpMMoerUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"senderId\" : \"6346919e3361d237ebf31b38\",\r\n    \"receiverId\": \"6347a93778a46c181fede74c\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/chats/",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"chats",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user-chats",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjAwNDk0LCJleHAiOjE2NjcyMTEyOTR9.QJ2O5kni1AkQtt_fEK2f0NT_9hTNaucmDQvpMMoerUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/chats/6347a93778a46c181fede74c",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"chats",
+										"6347a93778a46c181fede74c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-chats",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:2097/chats/find/6347a93778a46c181fede74c/6346919e3361d237ebf31b38",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"chats",
+										"find",
+										"6347a93778a46c181fede74c",
+										"6346919e3361d237ebf31b38"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Messages",
+					"item": [
+						{
+							"name": "messages",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjkxOWUzMzYxZDIzN2ViZjMxYjM4IiwiaWF0IjoxNjY1NTY5MTkwLCJleHAiOjE2NjU1Nzk5OTB9.oQXS-2DN0o5hyH0K92zXJBc7uqC2edUQBzlEtyZOXo4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"chatId\" : \"635f8aa05508a2ffff97dccd\",\r\n    \"senderId\" :\"6346919e3361d237ebf31b38\",\r\n    \"text\" : \"gfgd\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/message",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"message"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-message",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/message/635f8aa05508a2ffff97dccd",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"message",
+										"635f8aa05508a2ffff97dccd"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "followConnection",
+					"item": [
+						{
+							"name": "follow",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "astrologer-register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"demo1\", \r\n    \"lastName\": \"Manish\", \r\n    \"address\": \"delhi\", \r\n     \"password\": \"124567897\",\r\n       \"confirmpassword\": \"124567897\",\r\n    \"email\": \"demo@1234gmail.com\", \r\n    \"mobile\": \"123456789\", \r\n    \"country\": \"indoa\", \r\n    \"state\": \"Raj\", \r\n    \"district\": \"jai\",\r\n    \"pincode\": \"202033\",\r\n    \"desc\": \"this is my description\", \r\n    \"language\": [\"hindi\", \"English\"],\r\n     \"rashi\": \"singh\", \r\n     \"skill\":[\"Marriage Problems\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2097/astrologer/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"astrologer",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "astrologer-login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"email_ID\" :\"sumitchou6600@gmail.com\",\r\n     \"password\" : \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2097/admin/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UserSignUp",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjAwNDk0LCJleHAiOjE2NjcyMTEyOTR9.QJ2O5kni1AkQtt_fEK2f0NT_9hTNaucmDQvpMMoerUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mobile_Number\" :\"1234567890\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/auth/signUp",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"auth",
+										"signUp"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UserOtpVerify",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjAwNDk0LCJleHAiOjE2NjcyMTEyOTR9.QJ2O5kni1AkQtt_fEK2f0NT_9hTNaucmDQvpMMoerUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mobile_Number\" :\"1234567890\",\r\n    \"otp\" : \"666432\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/auth/verify",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"auth",
+										"verify"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-all-user-details",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3NTU1ODAzLCJleHAiOjE2Njc2NDIyMDN9.fP7XjcS34ptdf6cNpjZJ3N7dl68Ji9sT_4BTXolXvwY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/admin/search-user",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"admin",
+										"search-user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SearchByKey",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "forgot-password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email_ID\" : \"sumitchoudhary6600@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2097/admin/resetpassword",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"admin",
+										"resetpassword"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "otp-verification",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{  \r\n    \"email_ID\" : \"sumitchoudhary6600@gmail.com\",\r\n    \"OTP\" : 974533\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2097/admin/verifyotp",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"admin",
+										"verifyotp"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "password-change",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\" : \"567867\",\r\n    \"confirmPassword\" : \"567867\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2097/admin/changepassword/63468ebf93f64a669755774a/e23b32655ed14240f960499fa1fdaa833aecf687f6be487d33b72fd27f9c2222",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"admin",
+										"changepassword",
+										"63468ebf93f64a669755774a",
+										"e23b32655ed14240f960499fa1fdaa833aecf687f6be487d33b72fd27f9c2222"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UserSignUpbyotp",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Get-Astro-profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODNmYTM0NjdmOGE4ZDY5MzljNGFlIiwiaWF0IjoxNjcwOTI1Njk1LCJleHAiOjE2NzA5MzY0OTV9.f1LG6EA-C7AywnZxejVjWteRqt1_kWDRQ9sxLkH9gm0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:2097/astrologer/view/63983fa3467f8a8d6939c4ae",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2097",
+									"path": [
+										"astrologer",
+										"view",
+										"63983fa3467f8a8d6939c4ae"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Feedback",
+					"item": [
+						{
+							"name": "Add-feedback",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjAwNDk0LCJleHAiOjE2NjcyMTEyOTR9.QJ2O5kni1AkQtt_fEK2f0NT_9hTNaucmDQvpMMoerUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"UserId\":\"34586\",\r\n     \"Feedback\": \"Its really helpful\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/admin/add-feedback",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"admin",
+										"add-feedback"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get_Feedback",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NjhlYmY5M2Y2NGE2Njk3NTU3NzRhIiwiaWF0IjoxNjY3MjAwNDk0LCJleHAiOjE2NjcyMTEyOTR9.QJ2O5kni1AkQtt_fEK2f0NT_9hTNaucmDQvpMMoerUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://astrologer-panel.herokuapp.com/admin/view-feedback",
+									"protocol": "https",
+									"host": [
+										"astrologer-panel",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"admin",
+										"view-feedback"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "upload-documents",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2097/astrologer/upload-documents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2097",
+							"path": [
+								"astrologer",
+								"upload-documents"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "UserSignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"user2\", \r\n    \"lastName\": \"Sharma\", \r\n    \"address\": \"delhi\", \r\n     \"password\": \"124567894\",\r\n    \"confirmpassword\": \"124567894\",\r\n    \"email\": \"demo@12345gmail.com\", \r\n    \"mobile\": \"111111111\", \r\n    \"country\": \"indoa\", \r\n    \"state\": \"Raj\", \r\n    \"district\": \"jai\",\r\n    \"pincode\": \"202033\",\r\n    \"desc\": \"this is my description\", \r\n    \"language\": [\"hindi\", \"English\"],\r\n     \"rashi\": \"singh\", \r\n     \"skills\":[\"Marriage Problems\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userLogin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA0NzkwLCJleHAiOjE2NzE2MTU1OTB9.YZ5rlxu1APaZMyqRFKDGE_3IhWmSyZE5_woa_JwJBdk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"password\": \"124567894\",\r\n    \"mobile\": \"123456782\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBlog",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/user/blogs/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"blogs",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UsersGetById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/user/view-user-details/63986d1fc9f9926b0ce4d953",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"view-user-details",
+								"63986d1fc9f9926b0ce4d953"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"user1\", \r\n    \"lastName\": \"Sharma\", \r\n    \"address\": \"delhi\", \r\n     \"password\": \"124567894\",\r\n       \"confirmpassword\": \"124567894\",\r\n    \"email\": \"demo@1234gmail.com\", \r\n    \"mobile\": \"123456782\", \r\n    \"country\": \"indoa\", \r\n    \"state\": \"Raj\", \r\n    \"district\": \"jai\",\r\n    \"pincode\": \"202033\",\r\n    \"desc\": \"this is my description\", \r\n    \"language\": [\"hindi\", \"English\"],\r\n     \"rashi\": \"singh\", \r\n     \"skills\":[\"Marriage Problems\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/user/edit-user-profiles/63986d1fc9f9926b0ce4d953",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"edit-user-profiles",
+								"63986d1fc9f9926b0ce4d953"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchbylanguage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/user/search-language?search=u",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"search-language"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "u"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteByuserName",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/user//removed/user2",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"",
+								"removed",
+								"user2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetWalletByUserID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/user/wallet/63986d1fc9f9926b0ce4d953",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"wallet",
+								"63986d1fc9f9926b0ce4d953"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddMoney",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"63986d1fc9f9926b0ce4d953\",\r\n    \"balance\":45 \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/user/wallet/add/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"wallet",
+								"add",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByWalletID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/user/wallet/63a2b1c3b2f1a3707941e848",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"wallet",
+								"63a2b1c3b2f1a3707941e848"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Removefromwallet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"user\": \"63986d1fc9f9926b0ce4d953\",\r\n    \"balance\":20 \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/user/wallet/remove",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"wallet",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReferByUserID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"63a2b0f5457b953cc9a12c8f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/user/refer",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"refer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserReferCode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"63a2b0f5457b953cc9a12c8f\",\r\n    \"code\": \"0201undefined\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/user/refer",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"refer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddFeedBack",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\": \"63a2b0f5457b953cc9a12c8f\",\r\n    \"Feedback\": \"App Are Cool\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/user/feedback",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBanner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/banner/getbanner",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"banner",
+								"getbanner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetNotification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5ODZkMWZjOWY5OTI2YjBjZTRkOTUzIiwiaWF0IjoxNjcxNjA1MTY1LCJleHAiOjE2NzE2MTU5NjV9.7aMSiXa3Js4Kv4HS4iFbifAVuS9gccOpcyD8tIxSw7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/user/notification",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"user",
+								"notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSupport",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/support/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"support",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrderAPI",
+			"item": [
+				{
+					"name": "CreateOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uerId\": \"63986d1fc9f9926b0ce4d953\",\r\n    \"astroId\": \"639ae1d99b250ad9e3575a68\",\r\n    \"time\": \"10 min\",\r\n    \"problem\": \"Carrerr\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/api/v1/order",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllOrder",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/order",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByUserID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/order/user/63986d1fc9f9926b0ce4d953",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"order",
+								"user",
+								"63986d1fc9f9926b0ce4d953"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderbyAstroID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/order/astroId/639ae1d99b250ad9e3575a68",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"order",
+								"astroId",
+								"639ae1d99b250ad9e3575a68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateOrder",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"time\": \"10 \",\r\n    \"problem\": \"Carrerr\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/order/639c246ebc2e5ebe010f17c9",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"order",
+								"639c246ebc2e5ebe010f17c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteOrder",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/order/639c246ebc2e5ebe010f17c9",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"order",
+								"639c246ebc2e5ebe010f17c9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

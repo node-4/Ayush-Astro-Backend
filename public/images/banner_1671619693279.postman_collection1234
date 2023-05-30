@@ -1,0 +1,1928 @@
+{
+	"info": {
+		"_postman_id": "0621f83f-b4b9-4a25-9987-a30f4e53b534",
+		"name": "Mr-Nikhil-Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21965866"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "send OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phoneNumber\" : \"9318385934\",\r\n    \"countryCode\" : \"91\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/users/send-otp",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"send-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phoneNumber\" : \"9318385934\",\r\n    \"countryCode\" : \"91\",\r\n    \"otp\" : \"423301\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/auth/verify-otp",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"verify-otp"
+							]
+						},
+						"description": "#### Checks for the status parameter `Approved`"
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\" : \"flyweis\",\r\n    \"Name\" : \"Company\",\r\n    \"phoneNumber\" : \"9910292912\",\r\n    \"companyAddress\": \"Noidda\",\r\n    \"companyEmail\" : \"node2@flyweis.technology\",\r\n    \"Password\" : \"123456789\",\r\n    \"role\" : \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/users/register",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						},
+						"description": "Register a user with his/her credential after the OTP verification."
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phoneNumber\" : \"123456\",\r\n    \"password\" : \"123456789\"\r\n}                                              ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3000/api/v1/users/login",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"node2@flyweis.technology\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/users/forgotPassword",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Contains all Authorization and Authentication based URI's"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GET current User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/users/me",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"me"
+							]
+						},
+						"description": "**Since, the profile page can only be accessed when the user is logged in we can access the userID from the logged in Token and hence use that**"
+					},
+					"response": []
+				},
+				{
+					"name": "GET a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/users/63480f0982f9e346418e2156",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"63480f0982f9e346418e2156"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE current User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\" : \"somethingdiffrent\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/updateMe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"updateMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/users/deleteMe",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"deleteMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Verify Documents",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": [
+										"/C:/Users/Priyanshu/Downloads/Week0_merged.pdf",
+										"/C:/Users/Priyanshu/Downloads/WhatsApp Image 2022-10-13 at 6.25.37 PM.jpeg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/users/upload",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Documents Of User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/Mydocuments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"Mydocuments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete My documents",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/Mydocuments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"Mydocuments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All documents",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/docs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllBanner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/users/banner",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"banner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add-Documents",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"type": "file",
+									"src": "/C:/Users/Flutter/Downloads/demo.pem"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/docs",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6387420b3155d84022c84b24\",\r\n     \"cartId\": \"63a158f7284cef47c59cd50c\",\r\n     \"time\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderHistory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/users/order/userId",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"order",
+								"userId"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddDocs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Flutter/Downloads/08-JULY-2022 (1).PNGOffer"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/docs/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"docs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/users/invoice/636521f6ea54d72e66ad4e5b",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"invoice",
+								"636521f6ea54d72e66ad4e5b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddInvoice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pdf",
+									"type": "file",
+									"src": "/C:/Users/Flutter/Downloads/figmademoapi's.postman_collection7_12_22.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/invoice",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"invoice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/users/docs/id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"docs",
+								"id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Checkout-Session",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/payment/checkout-session/635901d62c982ee822b8aac0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"checkout-session",
+								"635901d62c982ee822b8aac0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/payment/verification",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"verification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceId\" : \"634fbfaf1e9389312eb7a4ec\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/cart/addtoCart",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"addtoCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cart of User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/cart/getCart",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"getCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Services",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceId\" : \"6358fcd4f790a7230c59a28c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/cart/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete My Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/cart/deletemyCart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"deletemyCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable Cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/cart/disable",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "GET Invoice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/user/invoice",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"invoice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Document",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/user/documents",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Privacy terms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/privacy",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"privacy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET About Us",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://nikhil-backend.herokuapp.com/api/v1/about",
+							"protocol": "https",
+							"host": [
+								"nikhil-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"about"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CHAT",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Routes",
+			"item": [
+				{
+					"name": "Banner",
+					"item": [
+						{
+							"name": "Get a banner",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/banner",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"banner"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Banner by Name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"HomePage\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/banner/one",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"banner",
+										"one"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Banner",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/Flutter/Downloads/08-JULY-2022.PNGOffer"
+										},
+										{
+											"key": "name",
+											"value": "Qadir Ali",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/admin/banner",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"banner"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Home\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/banner/635fa5500e9dfcef7b01911d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"banner",
+										"635fa5500e9dfcef7b01911d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"banner-1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/banner/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"banner",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Services",
+					"item": [
+						{
+							"name": "Create Service",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODg5NTRlMzg0ZjEwMTIxMGMxZGVmZSIsImlhdCI6MTY3MDUwMjUxNCwiZXhwIjoxNjcwNTA5NzE0fQ.8l5jsjyyGE_QR1oBYOxSMnFje4-FbH0BqH9BF0cxAc0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"check\",\r\n    \"price\" : \"4000\",\r\n    \"summary\" : \"A Dull android delvelopment Course!\",\r\n    \"description\" : \"The course deep ldives into basic knowledge and implementation of all the different technologies such as MongoDb, React, Express and everything else etc and some more blah blah blah blah...\",\r\n    \"category\": \"Tax Filling\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3000/api/v1/service",
+									"host": [
+										"ec2-15-206-210-177",
+										"ap-south-1",
+										"compute",
+										"amazonaws",
+										"com"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"service"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Service",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\" : \"The course deep dives into basic knowledge and implementation of all the different technologies such as MongoDb, React, Express and everything else etc and some more blah blah blah blah..and one more blah after the edit route\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nikhil-backend.herokuapp.com/api/v1/service/634fbfaf1e9389312eb7a4ec",
+									"protocol": "https",
+									"host": [
+										"nikhil-backend",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"service",
+										"634fbfaf1e9389312eb7a4ec"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Service",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3000/api/v1/service/634fbfaf1e9389312eb7a4ec",
+									"host": [
+										"ec2-15-206-210-177",
+										"ap-south-1",
+										"compute",
+										"amazonaws",
+										"com"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"service",
+										"634fbfaf1e9389312eb7a4ec"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Services",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3000/api/v1/admin/service",
+									"protocol": "http",
+									"host": [
+										"ec2-15-206-210-177",
+										"ap-south-1",
+										"compute",
+										"amazonaws",
+										"com"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"service"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Service by SLUG",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/service/web-development",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"service",
+										"web-development"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Service By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/admin/services/634fbfaf1e9389312eb7a4ec",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"services",
+										"634fbfaf1e9389312eb7a4ec"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Service By category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/admin/services/categories/accounting",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"services",
+										"categories",
+										"accounting"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Sevice Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/service",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"service"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetBycat",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3000/api/v1/service/cat/cloudaccounting",
+									"host": [
+										"ec2-15-206-210-177",
+										"ap-south-1",
+										"compute",
+										"amazonaws",
+										"com"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"service",
+										"cat",
+										"cloudaccounting"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Update User",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\" : \"Somethingnew\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nikhil-backend.herokuapp.com/api/v1/users/updateMe",
+									"protocol": "https",
+									"host": [
+										"nikhil-backend",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"updateMe"
+									]
+								},
+								"description": "The entered Fields which are passed with body will be altered in the original database."
+							},
+							"response": []
+						},
+						{
+							"name": "GET all users",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3000/api/v1/admin/users/",
+									"protocol": "http",
+									"host": [
+										"ec2-15-206-210-177",
+										"ap-south-1",
+										"compute",
+										"amazonaws",
+										"com"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE user By ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODg5NTRlMzg0ZjEwMTIxMGMxZGVmZSIsImlhdCI6MTY3MDUwMjUxNCwiZXhwIjoxNjcwNTA5NzE0fQ.8l5jsjyyGE_QR1oBYOxSMnFje4-FbH0BqH9BF0cxAc0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3000/api/v1/users/delete/63480f0982f9e346418e2156",
+									"protocol": "http",
+									"host": [
+										"ec2-15-206-210-177",
+										"ap-south-1",
+										"compute",
+										"amazonaws",
+										"com"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"delete",
+										"63480f0982f9e346418e2156"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User By ID",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\" : \"UpdatedName\",\r\n    \"role\" :\"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users/63480f0982f9e346418e2156",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"63480f0982f9e346418e2156"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Documents by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nikhil-backend.herokuapp.com/api/v1/admin/docs/6350edbaca55bd589fe6ce8c",
+									"protocol": "https",
+									"host": [
+										"nikhil-backend",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"docs",
+										"6350edbaca55bd589fe6ce8c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User-docs by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/admin/docs/6350edbaca55bd589fe6ce8c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"docs",
+										"6350edbaca55bd589fe6ce8c"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Bookings",
+					"item": [
+						{
+							"name": "Get All Bookings",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3000/api/v1/admin/booking",
+									"host": [
+										"ec2-15-206-210-177",
+										"ap-south-1",
+										"compute",
+										"amazonaws",
+										"com"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Booking",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://nikhil-backend.herokuapp.com/api/v1/payment/?cart=635901d62c982ee822b8aac0&user=6350edbaca55bd589fe6ce8c&price=500",
+									"protocol": "https",
+									"host": [
+										"nikhil-backend",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"payment",
+										""
+									],
+									"query": [
+										{
+											"key": "cart",
+											"value": "635901d62c982ee822b8aac0"
+										},
+										{
+											"key": "user",
+											"value": "6350edbaca55bd589fe6ce8c"
+										},
+										{
+											"key": "price",
+											"value": "500"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Carts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"cart"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Addto Cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"userId\": \"6357c2798b69070437daf167\",\r\n                \"serviceId\": \"6396fe5edab2e6720fdc5263\",\r\n                \"quaninty\": 1\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/cart/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByuserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/cart/getcart/6357c2798b69070437daf167",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"getcart",
+								"6357c2798b69070437daf167"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/cart/636b4e58a0dd56ac9b19e812",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"636b4e58a0dd56ac9b19e812"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AllCart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveFromcart",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6387420b3155d84022c84b24\",\r\n    \"serviceId\": \"6396fe10dab2e6720fdc525f\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/cart",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Single order",
+			"item": [
+				{
+					"name": "Add order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6387420b3155d84022c84b24\",\r\n    \"serviceId\": \"639702dadab2e6720fdc5270\",\r\n    \"time\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/single/order/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"single",
+								"order",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/single/order/63a051199633da419afd95e8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"single",
+								"order",
+								"63a051199633da419afd95e8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:3000/api/v1/single/order",
+							"protocol": "http",
+							"host": [
+								"ec2-15-206-210-177",
+								"ap-south-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"single",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AdRating",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Seat",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/users/seat",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"seat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSeat",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/users/seat",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"seat"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
