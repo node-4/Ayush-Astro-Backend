@@ -1,69 +1,52 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
-const app = express();
 const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
-const globalErrorHandler = require("./controllers/errorController");
 require("dotenv").config();
+const compression = require("compression");
+const serverless = require("serverless-http");
+const app = express();
 const path = require("path");
-app.use(express.json());
-app.use(express.static(`${__dirname}/public`));
-app.use(cookieParser());
+app.use(compression({ threshold: 500 }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-
-const PORT = process.env.PORT || 3002;
-const DB_URI = process.env.DB_URI;
-
+if (process.env.NODE_ENV == "production") {
+    console.log = function () { };
+}
+//console.log = function () {};
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
-app.use("/api/v1/", require("./routes/router"));
-app.use(globalErrorHandler);
 
-const Main = async () => {
-    try {
-        mongoose.Promise = global.Promise;
-        mongoose.set("strictQuery", true);
+app.use("/auth", require("./routes/auth.route"));
+app.use("/user", require("./routes/userRoutes"));
+app.use('/astrologer',require("./routes/astrologer") );
+app.use('/horoscope', require("./routes/horoScopeRoute"));
+app.use('/kundli', require('./routes/kundliRourer'));
+app.use('/order', require('./routes/order'));
+app.use('/product', require('./routes/product'))
+app.use('/astrocallhistory', require('./routes/astrocallRouter'));
+app.use('/discount', require('./routes/discountRouter'));
+app.use('/chat', require('./routes/chatHistory'))
+app.use('/agora', require('./routes/agoreRouter.'))
+app.use("/admin", require("./routes/admin"));
+app.use("/banner", require("./routes/bannerRoutes"));
+app.use("/notification", require("./routes/notificationRouter"));
+app.use("/support", require("./routes/supportRoute"));
+mongoose.Promise = global.Promise;
+mongoose.set("strictQuery", true);
 
-        mongoose.connect(DB_URI, (err) => {
-            if (!err) {
-                console.log("MongoDB Connection Succeeded.");
-            } else {
-                console.log("Error in DB connection: " + err);
-            }
-        });
-
-        app.listen(PORT, async () => {
-            console.log(`server started ON ${PORT}`);
-        });
-    } catch (error) {
-        console.log(error);
+mongoose.connect(process.env.DB_URI, (err) => {
+    if (!err) {
+        console.log("MongoDB Connection Succeeded.");
+    } else {
+        console.log("Error in DB connection: " + err);
     }
-};
+});
 
-// //file upload
+app.listen(process.env.PORT, () => {
+    console.log(`Listening on port ${process.env.PORT}!`);
+});
 
-// const multer = require('multer');
-
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, '/public/uploads');
-//   },
-
-//   filename: function (req, file, cb) {
-//     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-//     cb(null, file.fieldname + '-' + uniqueSuffix)
-//   }
-// });
-// const upload1 = multer({ storage: storage }).single("user_file");
-// app.post("/upload", (req, res) => {
-//   console.log(req.data)
-//   upload1(req, res, (err) => {
-//     if (err) {
-//       res.status(400).send("Something went wrong!");
-//     }
-//     res.send(req.file);
-//   });
-// });
-
-Main();
+module.exports = { handler: serverless(app) }
