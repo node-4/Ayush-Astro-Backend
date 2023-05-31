@@ -11,6 +11,7 @@ app.use(compression({ threshold: 500 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+require('./controllers/notificationCronjob')
 if (process.env.NODE_ENV == "production") {
     console.log = function () { };
 }
