@@ -522,6 +522,22 @@ exports.loginWithOTP = async (req, res) => {
                 });
             }
         } else {
+            userRegistered.otp = otp;
+            userRegistered.accountVerification =false;
+            let data = await client.messages.create({
+                body: `The otp send to your mobile in ${otp}`,
+                from: "",
+                to: `+91${req.body.mobile}`,
+                channel: "sms",
+            });
+            if (data) {
+                await userRegistered.save();
+                return createResponse(res, 200, "otp sent", {
+                    userId: userRegistered._id,
+                    otp: otp,
+                });
+            }
+
         }
     } catch (err) {
         console.error(err);
