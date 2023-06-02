@@ -145,9 +145,7 @@ module.exports.login = async (req, res) => {
         console.log(user);
 
         if (!user)
-            res.status(402).json({
-                message: "This Number is not registered",
-            });
+            res.status(402).json({ message: "This Number is not registered" });
         const isPassword = await compare(password, user.password);
         if (isPassword) {
             jwt.sign({ user_id: user._id }, JWTkey, (err, token) => {
@@ -155,6 +153,8 @@ module.exports.login = async (req, res) => {
                 console.log(token);
                 return res.status(200).send({ user, token });
             });
+        } else {
+            res.status(401).send("Invalid Credentials");
         }
     } catch (err) {
         console.log(err);
@@ -232,9 +232,26 @@ exports.userMiddleware = async (req, res, next) => {
 // Verify
 
 module.exports.signUpUser = async (req, res) => {
-    const {firstName,lastName,password,confirmpassword,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link,} = req.body;
+    const {
+        firstName,
+        lastName,
+        password,
+        confirmpassword,
+        address,
+        email,
+        mobile,
+        country,
+        state,
+        district,
+        pincode,
+        language,
+        rashi,
+        desc,
+        skills,
+        link,
+    } = req.body;
     if (!firstName && !lastName && !email && !password && !confirmpassword) {
-        return res.status(501).json({message: "All field are required", });
+        return res.status(501).json({ message: "All field are required" });
     }
     // Check if user already exist
     const Existing = await User.findOne({ mobile });
@@ -245,18 +262,70 @@ module.exports.signUpUser = async (req, res) => {
         return res.status(401).json({ message: "Password is not match " });
     }
     encryptedPassword = await bcrypt.hash(password, 10);
-    const newUser = await createUser(firstName,lastName,password,confirmpassword,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link);
+    const newUser = await createUser(
+        firstName,
+        lastName,
+        password,
+        confirmpassword,
+        address,
+        email,
+        mobile,
+        country,
+        state,
+        district,
+        pincode,
+        language,
+        rashi,
+        desc,
+        skills,
+        link
+    );
     if (!newUser[0]) {
-        return res.status(400).send({message: "Unable to create new user",});
+        return res.status(400).send({ message: "Unable to create new user" });
     }
     res.send({ otp: newUser });
 };
 
-const createUser = async (firstName,lastName,password,confirmpassword,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link) => {
+const createUser = async (
+    firstName,
+    lastName,
+    password,
+    confirmpassword,
+    address,
+    email,
+    mobile,
+    country,
+    state,
+    district,
+    pincode,
+    language,
+    rashi,
+    desc,
+    skills,
+    link
+) => {
     const hashedPassword = await encrypt(password);
     const confirmPassword = await encrypt(confirmpassword);
     const otpGenerated = Math.floor(100 + Math.random() * 9000);
-    const newUser = await User.create({firstName,lastName,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link,password: hashedPassword,confirmpassword: confirmPassword,otp: otpGenerated,});
+    const newUser = await User.create({
+        firstName,
+        lastName,
+        address,
+        email,
+        mobile,
+        country,
+        state,
+        district,
+        pincode,
+        language,
+        rashi,
+        desc,
+        skills,
+        link,
+        password: hashedPassword,
+        confirmpassword: confirmPassword,
+        otp: otpGenerated,
+    });
     if (!newUser) {
         return [false, "Unable to sign you up"];
     }
@@ -421,9 +490,15 @@ module.exports.UpdateBlogs = async (req, res) => {
 exports.loginWithOTP = async (req, res) => {
     try {
         if (!req.body.mobile) {
-            return res.status(400).send({message: "phone number is required",});
+            return res
+                .status(400)
+                .send({ message: "phone number is required" });
         }
-        const otp = otpGenerator.generate(5, {lowerCaseAlphabets: false,upperCaseAlphabets: false,specialChars: false,});
+        const otp = otpGenerator.generate(5, {
+            lowerCaseAlphabets: false,
+            upperCaseAlphabets: false,
+            specialChars: false,
+        });
         req.body.otpExpiration = Date.now() + 1000 * 60 * 05;
         const userRegistered = await User.findOne({ mobile: req.body.mobile });
         if (!userRegistered) {
@@ -436,11 +511,13 @@ exports.loginWithOTP = async (req, res) => {
             // });
             if (data) {
                 const user = await User.create(req.body);
-                return res.status(200).send({  userId: user._id,otp: otp,message: "otp sent"});
+                return res
+                    .status(200)
+                    .send({ userId: user._id, otp: otp, message: "otp sent" });
             }
         } else {
             userRegistered.otp = otp;
-            userRegistered.accountVerification =false;
+            userRegistered.accountVerification = false;
             // let data = await client.messages.create({
             //     body: `The otp send to your mobile in ${otp}`,
             //     from: "",
@@ -448,10 +525,15 @@ exports.loginWithOTP = async (req, res) => {
             //     channel: "sms",
             // });
             // if (data) {
-                await userRegistered.save();
-                return res.status(200).send({  userId: userRegistered._id,otp: otp,message: "otp sent"});
+            await userRegistered.save();
+            return res
+                .status(200)
+                .send({
+                    userId: userRegistered._id,
+                    otp: otp,
+                    message: "otp sent",
+                });
             // }
-
         }
     } catch (err) {
         console.error(err);
