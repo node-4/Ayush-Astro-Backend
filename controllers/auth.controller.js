@@ -421,13 +421,9 @@ module.exports.UpdateBlogs = async (req, res) => {
 exports.loginWithOTP = async (req, res) => {
     try {
         if (!req.body.mobile) {
-            return createResponse(res, 400, "phone number is required");
+            return res.status(400).send({message: "phone number is required",});
         }
-        const otp = otpGenerator.generate(5, {
-            lowerCaseAlphabets: false,
-            upperCaseAlphabets: false,
-            specialChars: false,
-        });
+        const otp = otpGenerator.generate(5, {lowerCaseAlphabets: false,upperCaseAlphabets: false,specialChars: false,});
         req.body.otpExpiration = Date.now() + 1000 * 60 * 05;
         const userRegistered = await User.findOne({ mobile: req.body.mobile });
         if (!userRegistered) {
@@ -440,10 +436,7 @@ exports.loginWithOTP = async (req, res) => {
             // });
             if (data) {
                 const user = await User.create(req.body);
-                return createResponse(res, 200, "otp sent", {
-                    userId: user._id,
-                    otp: otp,
-                });
+                return res.status(200).send({  userId: user._id,otp: otp,message: "otp sent"});
             }
         } else {
             userRegistered.otp = otp;
@@ -454,13 +447,10 @@ exports.loginWithOTP = async (req, res) => {
             //     to: `+91${req.body.mobile}`,
             //     channel: "sms",
             // });
-            if (data) {
+            // if (data) {
                 await userRegistered.save();
-                return createResponse(res, 200, "otp sent", {
-                    userId: userRegistered._id,
-                    otp: otp,
-                });
-            }
+                return res.status(200).send({  userId: userRegistered._id,otp: otp,message: "otp sent"});
+            // }
 
         }
     } catch (err) {
