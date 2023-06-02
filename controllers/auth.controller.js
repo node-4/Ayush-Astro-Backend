@@ -432,12 +432,12 @@ exports.loginWithOTP = async (req, res) => {
         const userRegistered = await User.findOne({ mobile: req.body.mobile });
         if (!userRegistered) {
             req.body.otp = otp;
-            let data = await client.messages.create({
-                body: `The otp send to your mobile in ${otp}`,
-                from: "",
-                to: `+91${req.body.mobile}`,
-                channel: "sms",
-            });
+            // let data = await client.messages.create({
+            //     body: `The otp send to your mobile in ${otp}`,
+            //     from: "",
+            //     to: `+91${req.body.mobile}`,
+            //     channel: "sms",
+            // });
             if (data) {
                 const user = await User.create(req.body);
                 return createResponse(res, 200, "otp sent", {
@@ -448,12 +448,12 @@ exports.loginWithOTP = async (req, res) => {
         } else {
             userRegistered.otp = otp;
             userRegistered.accountVerification =false;
-            let data = await client.messages.create({
-                body: `The otp send to your mobile in ${otp}`,
-                from: "",
-                to: `+91${req.body.mobile}`,
-                channel: "sms",
-            });
+            // let data = await client.messages.create({
+            //     body: `The otp send to your mobile in ${otp}`,
+            //     from: "",
+            //     to: `+91${req.body.mobile}`,
+            //     channel: "sms",
+            // });
             if (data) {
                 await userRegistered.save();
                 return createResponse(res, 200, "otp sent", {
