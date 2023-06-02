@@ -138,23 +138,22 @@ module.exports.login = async (req, res) => {
         console.log(mobile);
         console.log(password);
         if (!(mobile && password)) {
-            res.status(403).send("All input is required");
+            res.status(403).send({ message: "All input is required", status: 403});
         }
-
         const user = await User.findOne({ mobile });
         console.log(user);
-
         if (!user)
-            res.status(402).json({ message: "This Number is not registered" });
+            res.status(402).json({ message: "This Number is not registered", status: 402});
         const isPassword = await compare(password, user.password);
         if (isPassword) {
             jwt.sign({ user_id: user._id }, JWTkey, (err, token) => {
-                if (err) return res.status(401).send("Invalid Credentials");
+                if (err)
+                    return res.status(401).send({ message: "Invalid Credentials", status: 401 });
                 console.log(token);
                 return res.status(200).send({ user, token });
             });
         } else {
-            res.status(401).send("Invalid Credentials");
+            res.status(401).send({message: "Invalid Credentials",status: 401,});
         }
     } catch (err) {
         console.log(err);
@@ -526,13 +525,11 @@ exports.loginWithOTP = async (req, res) => {
             // });
             // if (data) {
             await userRegistered.save();
-            return res
-                .status(200)
-                .send({
-                    userId: userRegistered._id,
-                    otp: otp,
-                    message: "otp sent",
-                });
+            return res.status(200).send({
+                userId: userRegistered._id,
+                otp: otp,
+                message: "otp sent",
+            });
             // }
         }
     } catch (err) {
