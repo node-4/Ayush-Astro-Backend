@@ -231,24 +231,7 @@ exports.userMiddleware = async (req, res, next) => {
 // Verify
 
 module.exports.signUpUser = async (req, res) => {
-    const {
-        firstName,
-        lastName,
-        password,
-        confirmpassword,
-        address,
-        email,
-        mobile,
-        country,
-        state,
-        district,
-        pincode,
-        language,
-        rashi,
-        desc,
-        skills,
-        link,
-    } = req.body;
+    const {firstName,lastName,password,confirmpassword,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link,} = req.body;
     if (!firstName && !lastName && !email && !password && !confirmpassword) {
         return res.status(501).json({ message: "All field are required" });
     }
@@ -261,70 +244,18 @@ module.exports.signUpUser = async (req, res) => {
         return res.status(401).json({ message: "Password is not match " });
     }
     encryptedPassword = await bcrypt.hash(password, 10);
-    const newUser = await createUser(
-        firstName,
-        lastName,
-        password,
-        confirmpassword,
-        address,
-        email,
-        mobile,
-        country,
-        state,
-        district,
-        pincode,
-        language,
-        rashi,
-        desc,
-        skills,
-        link
-    );
+    const newUser = await createUser(firstName,lastName,password,confirmpassword,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link);
     if (!newUser[0]) {
         return res.status(400).send({ message: "Unable to create new user" });
     }
     res.send({ otp: newUser });
 };
 
-const createUser = async (
-    firstName,
-    lastName,
-    password,
-    confirmpassword,
-    address,
-    email,
-    mobile,
-    country,
-    state,
-    district,
-    pincode,
-    language,
-    rashi,
-    desc,
-    skills,
-    link
-) => {
+const createUser = async (firstName,lastName,password,confirmpassword,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link) => {
     const hashedPassword = await encrypt(password);
     const confirmPassword = await encrypt(confirmpassword);
-    const otpGenerated = Math.floor(100 + Math.random() * 9000);
-    const newUser = await User.create({
-        firstName,
-        lastName,
-        address,
-        email,
-        mobile,
-        country,
-        state,
-        district,
-        pincode,
-        language,
-        rashi,
-        desc,
-        skills,
-        link,
-        password: hashedPassword,
-        confirmpassword: confirmPassword,
-        otp: otpGenerated,
-    });
+    const otpGenerated = otpGenerator.generate(4, {lowerCaseAlphabets: false,upperCaseAlphabets: false,specialChars: false,});
+    const newUser = await User.create({firstName,lastName,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link,password: hashedPassword,confirmpassword: confirmPassword,otp: otpGenerated,});
     if (!newUser) {
         return [false, "Unable to sign you up"];
     }
