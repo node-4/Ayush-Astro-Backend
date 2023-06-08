@@ -26,6 +26,7 @@
     "moment": "^2.29.4",
     "mongodb": "^4.5.0",
     "mongoose": "^6.1.2",
+    "msg91": "^2.1.4",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.20",
