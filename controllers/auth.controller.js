@@ -256,12 +256,9 @@ const createUser = async (firstName,lastName,password,confirmpassword,address,em
     const confirmPassword = await encrypt(confirmpassword);
     const otpGenerated = otpGenerator.generate(4, {lowerCaseAlphabets: false,upperCaseAlphabets: false,specialChars: false,});
     const newUser = await User.create({firstName,lastName,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link,password: hashedPassword,confirmpassword: confirmPassword,otp: otpGenerated,});
-    if (!newUser) {
-        return [false, "Unable to sign you up"];
-    }
+    if (!newUser) {return [false, "Unable to sign you up"];}
     try {
         // sendSMS(`+91${mobile}`, otpGenerated)
-
         return newUser.otp;
     } catch (error) {
         return [false, "Unable to sign up, Please try again later", error];
