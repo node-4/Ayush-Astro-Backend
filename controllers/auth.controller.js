@@ -15,7 +15,7 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const authPhone = process.env.TWILIO_ACCOUNT_PHONE;
 const client = require("twilio")(accountSid, authToken, {
-  lazyLoading: true,
+    lazyLoading: true,
 });
 dotenv.config({ path: "../.env" });
 // const { status } = require('express/lib/response');
@@ -140,12 +140,12 @@ module.exports.login = async (req, res) => {
         console.log(mobile);
         console.log(password);
         if (!(mobile && password)) {
-            res.status(403).send({ message: "All input is required", status: 403});
+            res.status(403).send({ message: "All input is required", status: 403 });
         }
         const user = await User.findOne({ mobile });
         console.log(user);
         if (!user)
-            res.status(402).json({ message: "This Number is not registered", status: 402});
+            res.status(402).json({ message: "This Number is not registered", status: 402 });
         const isPassword = await compare(password, user.password);
         if (isPassword) {
             jwt.sign({ user_id: user._id }, JWTkey, (err, token) => {
@@ -155,7 +155,7 @@ module.exports.login = async (req, res) => {
                 return res.status(200).send({ user, token });
             });
         } else {
-            res.status(401).send({message: "Invalid Credentials",status: 401,});
+            res.status(401).send({ message: "Invalid Credentials", status: 401, });
         }
     } catch (err) {
         console.log(err);
@@ -233,7 +233,7 @@ exports.userMiddleware = async (req, res, next) => {
 // Verify
 
 module.exports.signUpUser = async (req, res) => {
-    const {firstName,lastName,password,confirmpassword,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link,} = req.body;
+    const { firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, link, } = req.body;
     if (!firstName && !lastName && !email && !password && !confirmpassword) {
         return res.status(501).json({ message: "All field are required" });
     }
@@ -246,41 +246,41 @@ module.exports.signUpUser = async (req, res) => {
         return res.status(401).json({ message: "Password is not match " });
     }
     encryptedPassword = await bcrypt.hash(password, 10);
-    const newUser = await createUser(firstName,lastName,password,confirmpassword,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link);
+    const newUser = await createUser(firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, link);
     if (!newUser[0]) {
         return res.status(400).send({ message: "Unable to create new user" });
     }
     res.send({ otp: newUser });
 };
 
-const createUser = async (firstName,lastName,password,confirmpassword,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link) => {
+const createUser = async (firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, link) => {
     const hashedPassword = await encrypt(password);
     const confirmPassword = await encrypt(confirmpassword);
-    const otpGenerated = otpGenerator.generate(4, {lowerCaseAlphabets: false,upperCaseAlphabets: false,specialChars: false,});
-    const newUser = await User.create({firstName,lastName,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link,password: hashedPassword,confirmpassword: confirmPassword,otp: otpGenerated,});
-    if (!newUser) {return [false, "Unable to sign you up"];}
+    const otpGenerated = otpGenerator.generate(4, { lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false, });
+    const newUser = await User.create({ firstName, lastName, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, link, password: hashedPassword, confirmpassword: confirmPassword, otp: otpGenerated, });
+    if (!newUser) { return [false, "Unable to sign you up"]; }
     try {
         let b = await sendSMS(`+91${mobile}`, otpGenerated);
-        if(b){
-        return newUser.otp;
-    }
+        if (b) {
+            return newUser.otp;
+        }
     } catch (error) {
         return [false, "Unable to sign up, Please try again later", error];
     }
 };
 const sendSMS = async (phone, message) => {
     try {
-      const response = await client.messages.create({
-        body: message,
-        from: authPhone,
-        to: phone,
-      });
-      return response;
+        const response = await client.messages.create({
+            body: message,
+            from: authPhone,
+            to: phone,
+        });
+        return response;
     } catch (error) {
-      console.log(error);
-      throw error;
+        console.log(error);
+        throw error;
     }
-  };
+};
 exports.logout = (req, res) => {
     res.cookie("jwt", "loggedout", {
         expires: new Date(Date.now() + 10 * 1000),
@@ -436,7 +436,7 @@ exports.loginWithOTP = async (req, res) => {
                 .status(400)
                 .send({ message: "phone number is required" });
         }
-        const otp = otpGenerator.generate(4, {lowerCaseAlphabets: false,upperCaseAlphabets: false,specialChars: false,});
+        const otp = otpGenerator.generate(4, { lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false, });
         req.body.otpExpiration = Date.now() + 1000 * 60 * 05;
         const userRegistered = await User.findOne({ mobile: req.body.mobile });
         if (!userRegistered) {
@@ -448,10 +448,10 @@ exports.loginWithOTP = async (req, res) => {
             //     channel: "sms",
             // });
             // if (data) {
-                const user = await User.create(req.body);
-                return res
-                    .status(200)
-                    .send({ userId: user._id, otp: otp, message: "otp sent" });
+            const user = await User.create(req.body);
+            return res
+                .status(200)
+                .send({ userId: user._id, otp: otp, message: "otp sent" });
             // }
         } else {
             userRegistered.otp = otp;
@@ -499,6 +499,38 @@ exports.verifyloginOTP = async (req, res) => {
                 });
             }
         });
+    } catch (err) {
+        console.error(err);
+        return createResponse(res, 500, "Internal server error");
+    }
+};
+exports.socialLogin = async (req, res) => {
+    try {
+        const { firstName, lastName, email, mobile } = req.body;
+        console.log(req.body);
+        const user = await User.findOne({ firstName, lastName, email, mobile });
+        console.log(user);
+        if (user) {
+            jwt.sign({ user_id: user._id }, JWTkey, (err, token) => {
+                if (err) {
+                    return res.status(401).send("Invalid Credentials");
+                } else {
+                    console.log("000000000000", token);
+                    return res.status(200).json({success: true,msg: "Login successfully",userId: user._id, token: token,});
+                }
+            });
+        } else {
+            const newUser = await User.create({ firstName, lastName, mobile, email });
+            if (newUser) {
+                jwt.sign({ user_id: newUser._id }, JWTkey, (err, token) => {
+                    if (err) {
+                        return res.status(401).send("Invalid Credentials");
+                    } else {
+                        return res.status(200).json({success: true,msg: "Login successfully",userId: user._id, token: token,});
+                    }
+                });
+            }
+        }
     } catch (err) {
         console.error(err);
         return createResponse(res, 500, "Internal server error");

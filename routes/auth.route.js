@@ -15,6 +15,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 router.post("/signUp", authController.signUpUser);
+router.post("/socialLogin", authController.socialLogin);
 router.post("/sendOTP", authController.sendOTP);
 router.post("/verify", authController.verifyOTP);
 router.post("/sign/verify", authController.verifyOTPSignedIn);
