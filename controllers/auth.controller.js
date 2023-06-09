@@ -1,10 +1,6 @@
 const User = require("../models/User");
-const accountSid = "AC8622c6899f4572d141cc5b7a264a1f6d";
-const authToken = "95b6c572199028b1b74c24aeffc8ab9a";
-const verifySid = "VA84bc752a91abcf7df9f31c76832bafff";
 const { encrypt, compare } = require("../services/crypto");
 const bcrypt = require("bcrypt");
-const client = require("twilio")(accountSid, authToken);
 const jwt = require("jsonwebtoken");
 const JWTkey = "rubi";
 const AppError = require("../utils/AppError");
@@ -15,6 +11,12 @@ const dotenv = require("dotenv");
 const wallet = require("../models/wallet");
 const otpGenerator = require("otp-generator");
 
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const authPhone = process.env.TWILIO_ACCOUNT_PHONE;
+const client = require("twilio")(accountSid, authToken, {
+  lazyLoading: true,
+});
 dotenv.config({ path: "../.env" });
 // const { status } = require('express/lib/response');
 
@@ -258,13 +260,27 @@ const createUser = async (firstName,lastName,password,confirmpassword,address,em
     const newUser = await User.create({firstName,lastName,address,email,mobile,country,state,district,pincode,language,rashi,desc,skills,link,password: hashedPassword,confirmpassword: confirmPassword,otp: otpGenerated,});
     if (!newUser) {return [false, "Unable to sign you up"];}
     try {
-        // sendSMS(`+91${mobile}`, otpGenerated)
+        let b = await sendSMS(`+91${mobile}`, otpGenerated);
+        if(b){
         return newUser.otp;
+    }
     } catch (error) {
         return [false, "Unable to sign up, Please try again later", error];
     }
 };
-
+const sendSMS = async (phone, message) => {
+    try {
+      const response = await client.messages.create({
+        body: message,
+        from: authPhone,
+        to: phone,
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
 exports.logout = (req, res) => {
     res.cookie("jwt", "loggedout", {
         expires: new Date(Date.now() + 10 * 1000),

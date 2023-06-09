@@ -2,58 +2,50 @@ const User = require("../models/User");
 const Blog = require("../models/blog");
 const feedback = require("../models/feedback");
 const astroSttus = require('../models/astroStatus')
-// onst UserDetail = require('../models/userDetails')
-//post api--
 
 module.exports.postuserProfiles = async (req, res) => {
-  const { firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district , pincode, language, rashi, desc, skills  } = req.body;
-    if(!firstName && !lastName && !email && !password && !confirmpassword){
-      return res.status(501).json({
-        message: "All field are require"
-      })
-    }
+  const { firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills } = req.body;
+  if (!firstName && !lastName && !email && !password && !confirmpassword) {
+    return res.status(501).json({
+      message: "All field are require"
+    })
+  }
 
- // Check if user already exist
- const Existing = await astrologer.findOne({ mobile });
- if (Existing) {
-   return res.send("Already existing");
- }
- if(password !== confirmpassword ){
-   res.state(400).json({message: "Password is not match "})
- }
- encryptedPassword = await bcrypt.hash(password, 10);
+  // Check if user already exist
+  const Existing = await astrologer.findOne({ mobile });
+  if (Existing) {
+    return res.send("Already existing");
+  }
+  if (password !== confirmpassword) {
+    res.state(400).json({ message: "Password is not match " })
+  }
+  encryptedPassword = await bcrypt.hash(password, 10);
 
- // create new user
- 
- const newUser = await createUser(firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district , pincode, language, rashi, desc, skills );
- if (!newUser[0]) {
-   return res.status(401).send({
-     message: "Unable to create new user",
-   });
- }
- res.send(newUser);
+  // create new user
+
+  const newUser = await createUser(firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills);
+  if (!newUser[0]) {
+    return res.status(401).send({
+      message: "Unable to create new user",
+    });
+  }
+  res.send(newUser);
 };
 
-const createUser = async (firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district , pincode, language, rashi, desc, skills ) => {
- const hashedPassword = await encrypt(password);
- const confirmPassword  = await encrypt(confirmpassword)
- const otpGenerated = Math.floor(1000 + Math.random() * 90000);
- const newUser = await astrologer.create({
-   firstName, lastName, address, email, mobile, country, state, district , pincode, language, rashi, desc, skills,
-   password: hashedPassword,
-   confirmpassword: confirmPassword,
-   otp: otpGenerated,
- });
- if (!newUser) {
-   return [false, "Unable to sign you up"];
- }
- try {
-   // sendSMS(`+91${mobile_Number}`, otpGenerated)
-
-   return [true, newUser];
- } catch (error) {
-   return [false, "Unable to sign up, Please try again later", error];
- }
+const createUser = async (firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills) => {
+  const hashedPassword = await encrypt(password);
+  const confirmPassword = await encrypt(confirmpassword)
+  const otpGenerated = Math.floor(1000 + Math.random() * 90000);
+  const newUser = await astrologer.create({ firstName, lastName, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, password: hashedPassword, confirmpassword: confirmPassword, otp: otpGenerated, });
+  if (!newUser) {
+    return [false, "Unable to sign you up"];
+  }
+  try {
+ 
+    return [true, newUser];
+  } catch (error) {
+    return [false, "Unable to sign up, Please try again later", error];
+  }
 };
 
 //get api
@@ -125,16 +117,16 @@ module.exports.ViewDataProfiles = async (req, res) => {
 // };
 
 // Patch Id 
-exports.updateUserProfile = async(req,res) => {
-  try{
-const  { firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district , pincode, language, rashi, desc, skills,  specification   } = req.body;
-await User.findByIdAndUpdate({_id: req.params.id}, {
-  firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district , pincode, language, rashi, desc, skills,  specification 
-})
-res.status(200).json({
-  message: "Updated Done "
-})
-  }catch(err){
+exports.updateUserProfile = async (req, res) => {
+  try {
+    const { firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, specification } = req.body;
+    await User.findByIdAndUpdate({ _id: req.params.id }, {
+      firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, specification
+    })
+    res.status(200).json({
+      message: "Updated Done "
+    })
+  } catch (err) {
     console.log(err);
     res.state(400).json({
       err: err.message
@@ -281,7 +273,7 @@ module.exports.getAllUsers = async (req, res) => {
 // FeedBack 
 
 exports.UserFeedback = async (req, res) => {
-  let { UserId,  Feedback, rating, astroId  } = req.body;
+  let { UserId, Feedback, rating, astroId } = req.body;
 
   try {
     if (!(UserId && Feedback && astroId)) {
@@ -289,17 +281,17 @@ exports.UserFeedback = async (req, res) => {
         .status(402)
         .json({ message: "All fields are required", status: false });
     } else {
-      const userData = await User.findById({_id: UserId});
+      const userData = await User.findById({ _id: UserId });
       const data = {
-        UserId: UserId, 
-        Feedback: Feedback, 
-        name: userData.firstName, 
-        astroId: astroId, 
+        UserId: UserId,
+        Feedback: Feedback,
+        name: userData.firstName,
+        astroId: astroId,
         rating: rating
       }
       const NewUserFeedback = await feedback.create(data);
-      await astrologer.findByIdAndUpdate({_id: req.body.astroId},{
-        rating:[rating]
+      await astrologer.findByIdAndUpdate({ _id: req.body.astroId }, {
+        rating: [rating]
       })
       if (NewUserFeedback)
         res
@@ -315,13 +307,13 @@ exports.UserFeedback = async (req, res) => {
   }
 };
 
-exports.GetAllFeedBack = async(req,res) => {
-  try{
-  const data = await feedback.find();
-  res.status(200).json({
-    message: data
-  })
-  }catch(err){
+exports.GetAllFeedBack = async (req, res) => {
+  try {
+    const data = await feedback.find();
+    res.status(200).json({
+      message: data
+    })
+  } catch (err) {
     res.status(400).json({
       message: err.message
     })
@@ -329,13 +321,13 @@ exports.GetAllFeedBack = async(req,res) => {
 }
 
 
-exports.GetFeedbackById = async(req,res) => {
-  try{
-  const data = await feedback.findOne({userId: req.params.id});
-  res.status(200).json({
-    message: data
-  })
-  }catch(err){
+exports.GetFeedbackById = async (req, res) => {
+  try {
+    const data = await feedback.findOne({ userId: req.params.id });
+    res.status(200).json({
+      message: data
+    })
+  } catch (err) {
     res.status(400).json({
       message: err.message
     })
@@ -343,22 +335,22 @@ exports.GetFeedbackById = async(req,res) => {
 }
 
 
-exports.GetAstroliveChanges = async(req,res) => {
-  try{
-const data  = await astroSttus.find({status:true}).limit(5).sort();
-res.status(200).json({data:data});
-  }catch(err){
+exports.GetAstroliveChanges = async (req, res) => {
+  try {
+    const data = await astroSttus.find({ status: true }).limit(5).sort();
+    res.status(200).json({ data: data });
+  } catch (err) {
     res.status(400).json({
       message: err.message
     })
   }
 }
 
-exports.GetAstroUpcoming = async(req,res) => {
-  try{
-const data  = await astroSttus.find({status:false}).limit(5).sort();
-res.status(200).json({data:data});
-  }catch(err){
+exports.GetAstroUpcoming = async (req, res) => {
+  try {
+    const data = await astroSttus.find({ status: false }).limit(5).sort();
+    res.status(200).json({ data: data });
+  } catch (err) {
     res.status(400).json({
       message: err.message
     })
