@@ -45,7 +45,7 @@ exports.getWalletById = catchAsync(async (req, res) => {
 });
 
 exports.createWallet = catchAsync(async (req, res) => {
-    const w = await Wallet.create({ user: req.params.userId });
+    const w = await Wallet.create({ user: req.body.userId });
 
     res.status(200).json({
         status: "success",

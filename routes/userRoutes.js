@@ -48,7 +48,7 @@ router.delete("/removed/:user_Name", isAuthenticated, user.deleteUserName);
 router
   .route("/wallet")
   .get(isAuthenticated, walletController.getWallet)
-  .post(isAuthenticated, walletController.createWallet);
+  .post(walletController.createWallet);
 router.post("/wallet/add", isAuthenticated, walletController.addMoney);
 router.post("/wallet/remove", isAuthenticated, walletController.removeMoney);
 router.get("/wallet/:id", isAuthenticated, walletController.getWalletById);
