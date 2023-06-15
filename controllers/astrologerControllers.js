@@ -14,22 +14,26 @@ const fees = require("../models/fees_Models");
 const review = require('../models/review');
 const feedback = require("../models/feedback");
 
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const authPhone = process.env.TWILIO_ACCOUNT_PHONE;
+const client = require("twilio")(accountSid, authToken, {
+    lazyLoading: true,
+});
 
-
-const sendSMS = async (to, otp) => {
-    const from = "+19287568632";
-    await client.messages
-      .create({
-        body: otp,
-        from: from,
-        to: to,
-      })
-      .then((message) => {
-        console.log(message.sid);
-        return message;
+const sendSMS = async (phone, message) => {
+  try {
+      const response = await client.messages.create({
+          body: message,
+          from: authPhone,
+          to: phone,
       });
-  };
-  
+      return response;
+  } catch (error) {
+      console.log(error);
+      throw error;
+  }
+}
 
   exports.sendOTP = async (req, res) => {
     
@@ -98,8 +102,10 @@ const sendSMS = async (to, otp) => {
       return [false, "Unable to sign you up"];
     }
     try {
-      // sendSMS(`+91${mobile_Number}`, otpGenerated)
-  
+   let b = await sendSMS(`+91${mobile}`, otpGenerated);
+        if (b) {
+            return newUser.otp;
+        }  
       return newUser.otp;
     } catch (error) {
       return [false, "Unable to sign up, Please try again later", error];
