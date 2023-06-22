@@ -259,9 +259,11 @@ exports.verifyOTP = async(req,res) => {
 
  exports.GetAllAstro = async(req,res) => {
   try {
+    console.log("---------54665--");
     // const users = await astrologer.find();
-    const astro = await  astrologer.find()
- 
+    const astro = await astrologer.find()
+
+    console.log(astro);
 
     res.status(200).json({
       status: "success",
