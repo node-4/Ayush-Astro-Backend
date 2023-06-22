@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Blog = require("../models/blog");
 const feedback = require("../models/feedback");
 const astroSttus = require('../models/astroStatus')
+var newOTP = require("otp-generators");
 
 module.exports.postuserProfiles = async (req, res) => {
   const { firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills } = req.body;
@@ -35,7 +36,7 @@ module.exports.postuserProfiles = async (req, res) => {
 const createUser = async (firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills) => {
   const hashedPassword = await encrypt(password);
   const confirmPassword = await encrypt(confirmpassword)
-  const otpGenerated = Math.floor(1000 + Math.random() * 90000);
+  const otpGenerated = newOTP.generate(4, { alphabets: false, upperCase: false, specialChar: false, });
   const newUser = await astrologer.create({ firstName, lastName, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, password: hashedPassword, confirmpassword: confirmPassword, otp: otpGenerated, });
   if (!newUser) {
     return [false, "Unable to sign you up"];
