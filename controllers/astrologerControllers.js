@@ -14,29 +14,27 @@ const fees = require("../models/fees_Models");
 const review = require('../models/review');
 const feedback = require("../models/feedback");
 var newOTP = require("otp-generators");
+
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const authPhone = process.env.TWILIO_ACCOUNT_PHONE;
 const client = require("twilio")(accountSid, authToken, {
-  lazyLoading: true,
+    lazyLoading: true,
 });
 
 const sendSMS = async (phone, message) => {
   try {
-    console.log("31------------");
-    const response = await client.messages.create({
-      body: message,
-      from: authPhone,
-      to: phone,
-    });
-    return response;
+      const response = await client.messages.create({
+          body: message,
+          from: authPhone,
+          to: phone,
+      });
+      return response;
   } catch (error) {
-    console.log("39==================", error);
-    return message;
-    console.log(error);
-    throw error;
+      console.log(error);
+      throw error;
   }
-}
+};
 
 exports.sendOTP = async (req, res) => {
 
