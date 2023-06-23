@@ -505,8 +505,7 @@ exports.socialLogin = async (req, res) => {
                 if (err) {
                     return res.status(401).send("Invalid Credentials");
                 } else {
-                    console.log("000000000000", token);
-                    return res.status(200).json({ success: true, msg: "Login successfully", userId: user._id, token: token, });
+                    return res.status(200).json({ status: 200, msg: "Login successfully", userId: user._id, token: token, });
                 }
             });
         } else {
@@ -516,7 +515,7 @@ exports.socialLogin = async (req, res) => {
                     if (err) {
                         return res.status(401).send("Invalid Credentials");
                     } else {
-                        return res.status(200).json({ success: true, msg: "Login successfully", userId: user._id, token: token, });
+                        return res.status(200).json({ status: 200, msg: "Login successfully", userId: user._id, token: token, });
                     }
                 });
             }
