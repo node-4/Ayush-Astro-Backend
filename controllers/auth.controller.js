@@ -437,39 +437,29 @@ exports.loginWithOTP = async (req, res) => {
                 .send({ message: "phone number is required" });
         }
         const otp = otpGenerator.generate(4, { lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false, });
-        req.body.otpExpiration = Date.now() + 1000 * 60 * 05;
+        req.body.otpExpiration = Date.now() + (1000 * 60 * 5);
         const userRegistered = await User.findOne({ mobile: req.body.mobile });
         if (!userRegistered) {
             req.body.otp = otp;
-            // let data = await client.messages.create({
-            //     body: `The otp send to your mobile in ${otp}`,
-            //     from: "",
-            //     to: `+91${req.body.mobile}`,
-            //     channel: "sms",
-            // });
-            // if (data) {
-            const user = await User.create(req.body);
-            return res
-                .status(200)
-                .send({ userId: user._id, otp: otp, message: "otp sent" });
-            // }
+            let b = await sendSMS(`+91${req.body.mobile}`, otp);
+            if (b) {
+                const user = await User.create(req.body);
+                return res
+                    .status(200)
+                    .send({ userId: user._id, otp: otp, message: "otp sent" });
+            }
         } else {
             userRegistered.otp = otp;
             userRegistered.accountVerification = false;
-            // let data = await client.messages.create({
-            //     body: `The otp send to your mobile in ${otp}`,
-            //     from: "",
-            //     to: `+91${req.body.mobile}`,
-            //     channel: "sms",
-            // });
-            // if (data) {
-            await userRegistered.save();
-            return res.status(200).send({
-                userId: userRegistered._id,
-                otp: otp,
-                message: "otp sent",
-            });
-            // }
+            let b = await sendSMS(`+91${req.body.mobile}`, otp);
+            if (b) {
+                await userRegistered.save();
+                return res.status(200).send({
+                    userId: userRegistered._id,
+                    otp: otp,
+                    message: "otp sent",
+                });
+            }
         }
     } catch (err) {
         console.error(err);
@@ -516,7 +506,7 @@ exports.socialLogin = async (req, res) => {
                     return res.status(401).send("Invalid Credentials");
                 } else {
                     console.log("000000000000", token);
-                    return res.status(200).json({success: true,msg: "Login successfully",userId: user._id, token: token,});
+                    return res.status(200).json({ success: true, msg: "Login successfully", userId: user._id, token: token, });
                 }
             });
         } else {
@@ -526,7 +516,7 @@ exports.socialLogin = async (req, res) => {
                     if (err) {
                         return res.status(401).send("Invalid Credentials");
                     } else {
-                        return res.status(200).json({success: true,msg: "Login successfully",userId: user._id, token: token,});
+                        return res.status(200).json({ success: true, msg: "Login successfully", userId: user._id, token: token, });
                     }
                 });
             }
