@@ -22,7 +22,7 @@ const AstrologerSchema = new mongoose.Schema({
     required: false,
   },
   address: {
-    type: String, 
+    type: String,
     required: false
   },
   email: {
@@ -30,58 +30,60 @@ const AstrologerSchema = new mongoose.Schema({
     required: false,
   },
   mobile: {
-    type: String, 
+    type: String,
     required: false
   },
-  country:{
-    type: String, 
+  country: {
+    type: String,
     required: false
   },
   gender: {
-  type: String, 
-
+    type: String,
   },
-
   state: {
-    type: String, 
+    type: String,
     required: false
-  }, 
+  },
   district: {
-    type: String, 
-    required : false
-  }, 
+    type: String,
+    required: false
+  },
   pincode: {
-    type: String, 
+    type: String,
   },
   otp: {
     type: String
   },
-  language: [], 
-  desc:  {
+  language: [],
+  desc: {
     type: String
-  }, 
-  rashi : {
+  },
+  rashi: {
     type: String
-  }, 
-  skills: [], 
-  specification : [],
-  rating: [{ 
+  },
+  skills: [],
+  specification: [],
+  rating: [{
     type: String
- }], 
- fees: [{
-  type : String, 
- }], 
- aboutMe: {
+  }],
+  fees: [{
+    type: String,
+  }],
+  aboutMe: {
     type: String
- }, 
- dailyhoures: {
-  type: String,
-  required: false
- },
- experience: {
-  type: String, 
-  require: false
- }
+  },
+  dailyhoures: {
+    type: String,
+    required: false
+  },
+  experience: {
+    type: String,
+    require: false
+  },
+  callStatus: {
+    type: String,
+    enum: ["Engaged", "Not Engaged"]
+  },
 });
 
 module.exports = mongoose.model("astrologer", AstrologerSchema);

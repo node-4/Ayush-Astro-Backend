@@ -19,20 +19,20 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const authPhone = process.env.TWILIO_ACCOUNT_PHONE;
 const client = require("twilio")(accountSid, authToken, {
-    lazyLoading: true,
+  lazyLoading: true,
 });
 
 const sendSMS = async (phone, message) => {
   try {
-      const response = await client.messages.create({
-          body: message,
-          from: authPhone,
-          to: phone,
-      });
-      return response;
+    const response = await client.messages.create({
+      body: message,
+      from: authPhone,
+      to: phone,
+    });
+    return response;
   } catch (error) {
-      console.log(error);
-      throw error;
+    console.log(error);
+    throw error;
   }
 };
 
@@ -85,7 +85,7 @@ const createUser = async (firstName, lastName, password, confirmpassword, addres
   try {
     const hashedPassword = await encrypt(password);
     const confirmPassword = await encrypt(confirmpassword)
-    const otpGenerated =  newOTP.generate(4, { alphabets: false, upperCase: false, specialChar: false, });
+    const otpGenerated = newOTP.generate(4, { alphabets: false, upperCase: false, specialChar: false, });
     const newUser = await astrologer.create({ firstName, lastName, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, specification, fees, rating, link, aboutMe, gender, password: hashedPassword, confirmpassword: confirmPassword, otp: otpGenerated, dailyhoures: parseInt(dailyhoures), experience: parseInt(experience) });
     if (!newUser) {
       return [false, "Unable to sign you up"];
@@ -285,3 +285,16 @@ exports.updateAstro = async (req, res) => {
   }
 }
 
+exports.updateCallStatus = async (req, res) => {
+  try {
+    const getDetails = await astrologer.findById(req.params.id);
+    if (!getDetails) {
+      res.status(400).json({ message: "Enter the correct id", status: false });
+    } else {
+      const update = await astrologer.findByIdAndUpdate({ _id: req.params.id }, { $set: { callStatus: req.body.callStatus } }, { new: true })
+      res.status(200).json({ message: "Status update successfully", data: update, status: 200, });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message, status: false });
+  }
+};

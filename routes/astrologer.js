@@ -18,8 +18,5 @@ router.delete("/removed/:id", isAuthenticated, astroControllers.deleteAstroName)
 router.delete("/remove-language", isAuthenticated, astroControllers.deleteLanguages)
 router.get('/all', astroControllers.GetAllAstro)
 router.put('/update/:id', isAuthenticated, astroControllers.updateAstro);
-
-
-
-
+router.put('/updateCallStatus/:id', isAuthenticated, astroControllers.updateCallStatus);
 module.exports = router;
