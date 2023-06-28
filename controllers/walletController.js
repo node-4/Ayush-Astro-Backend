@@ -1,5 +1,6 @@
 const Wallet = require("../models/wallet");
 const catchAsync = require("../utils/catchAsync");
+const User = require("../models/User");
 
 exports.addMoney = catchAsync(async (req, res) => {
     const wallet = await Wallet.findOne({ user: req.body.user });
@@ -45,10 +46,11 @@ exports.getWalletById = catchAsync(async (req, res) => {
 });
 
 exports.createWallet = catchAsync(async (req, res) => {
-    const w = await Wallet.create({ user: req.body.userId });
-
-    res.status(200).json({
-        status: "success",
-        data: w,
-    });
+    const getDetails = await User.findById(req.body.userId);
+    if (!getDetails) {
+        res.status(400).json({ message: "Enter the correct id", status: false });
+    } else {
+        const w = await Wallet.create({ user: req.body.userId });
+        res.status(200).json({ status: "success", data: w, });
+    }
 });
