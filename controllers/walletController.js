@@ -48,8 +48,12 @@ exports.getWalletById = catchAsync(async (req, res) => {
 exports.createWallet = catchAsync(async (req, res) => {
     const getDetails = await User.findById(req.body.userId);
     if (!getDetails) {
-        res.status(400).json({ message: "Enter the correct id", status: false });
+        res.status(404).json({ message: "Enter the correct id", status: 404 });
     } else {
+        const wallet = await Wallet.findOne({ user: req.body.userId });
+        if (!wallet) {
+            res.status(409).json({ message: "This user id wallet already exit", status: 409 });
+        }
         const w = await Wallet.create({ user: req.body.userId });
         res.status(200).json({ status: "success", data: w, });
     }
