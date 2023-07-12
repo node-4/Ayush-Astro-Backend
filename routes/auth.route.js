@@ -21,7 +21,7 @@ router.post("/verify", authController.verifyOTP);
 router.post("/sign/verify", authController.verifyOTPSignedIn);
 router.post("/login", authController.login);
 router.post("/loginWithOTP", authController.loginWithOTP);
-router.post("/verifyloginOTP", authController.verifyloginOTP);
+router.post("/verifyloginOTP/:id", authController.verifyloginOTP);
 
 router.post(
     "/update-profile",
