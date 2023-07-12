@@ -316,9 +316,7 @@ exports.loginWithOTP = async (req, res) => {
       let b = await sendSMS(`+91${req.body.mobile}`, otp);
       if (b) {
         const user = await astrologer.create(req.body);
-        return res
-          .status(200)
-          .send({ userId: user._id, otp: otp, message: "otp sent" });
+        return res.status(200).send({ userId: user._id, otp: otp, message: "otp sent" });
       }
     } else {
       userRegistered.otp = otp;
@@ -330,7 +328,7 @@ exports.loginWithOTP = async (req, res) => {
     }
   } catch (err) {
     console.error(err);
-    return createResponse(res, 500, "Internal server error");
+    return res.status(500).send({ status: 500, message: "Internal server error" });
   }
 };
 

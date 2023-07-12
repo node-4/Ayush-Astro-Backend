@@ -463,7 +463,7 @@ exports.loginWithOTP = async (req, res) => {
         }
     } catch (err) {
         console.error(err);
-        return createResponse(res, 500, "Internal server error");
+        return res.status(500).send({ status: 500, message: "Internal server error" });
     }
 };
 
@@ -519,6 +519,6 @@ exports.socialLogin = async (req, res) => {
         }
     } catch (err) {
         console.error(err);
-        return createResponse(res, 500, "Internal server error");
+        return res.status(500).send({ status: 500, message: "Internal server error" });
     }
 };
