@@ -19,4 +19,5 @@ router.delete("/remove-language", isAuthenticated, astroControllers.deleteLangua
 router.get('/all', astroControllers.GetAllAstro)
 router.put('/update/:id', isAuthenticated, astroControllers.updateAstro);
 router.put('/updateCallStatus/:id', isAuthenticated, astroControllers.updateCallStatus);
+router.post('/loginWithOTP', astroControllers.loginWithOTP);
 module.exports = router;

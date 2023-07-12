@@ -107,13 +107,17 @@ exports.verifyOTP = async (req, res) => {
   try {
     const data = await astrologer.findOne({ otp: req.body.otp });
     if (!data) {
-      return res.status(401).json({
-        message: "Your Otp is Wrong"
-      })
+      return res.status(401).json({ message: "Your Otp is Wrong" })
     } else {
-      res.status(400).json({
-        message: "Otp verify"
-      })
+      jwt.sign(
+        { user_id: data._id }, JWTkey, (err, token) => {
+          if (err) {
+            res.status(400).send("Invalid Credentials");
+          } else {
+            res.status(200).send({ message: "Otp verify", data, token });
+          }
+        }
+      );
     }
   } catch (err) {
     res.status(400).json({
@@ -298,3 +302,35 @@ exports.updateCallStatus = async (req, res) => {
     res.status(400).json({ message: error.message, status: false });
   }
 };
+
+exports.loginWithOTP = async (req, res) => {
+  try {
+    if (!req.body.mobile) {
+      return res.status(400).send({ message: "phone number is required" });
+    }
+    const otp = otpGenerator.generate(4, { lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false, });
+    req.body.otpExpiration = Date.now() + (1000 * 60 * 5);
+    const userRegistered = await astrologer.findOne({ mobile: req.body.mobile });
+    if (!userRegistered) {
+      req.body.otp = otp;
+      let b = await sendSMS(`+91${req.body.mobile}`, otp);
+      if (b) {
+        const user = await astrologer.create(req.body);
+        return res
+          .status(200)
+          .send({ userId: user._id, otp: otp, message: "otp sent" });
+      }
+    } else {
+      userRegistered.otp = otp;
+      let b = await sendSMS(`+91${req.body.mobile}`, otp);
+      if (b) {
+        await userRegistered.save();
+        return res.status(200).send({ userId: userRegistered._id, otp: otp, message: "otp sent", });
+      }
+    }
+  } catch (err) {
+    console.error(err);
+    return createResponse(res, 500, "Internal server error");
+  }
+};
+
