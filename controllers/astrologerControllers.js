@@ -308,7 +308,7 @@ exports.loginWithOTP = async (req, res) => {
     if (!req.body.mobile) {
       return res.status(400).send({ message: "phone number is required" });
     }
-    const otp = otpGenerator.generate(4, { lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false, });
+    const otp = newOTP.generate(4, { alphabets: false, upperCase: false, specialChar: false, });
     req.body.otpExpiration = Date.now() + (1000 * 60 * 5);
     const userRegistered = await astrologer.findOne({ mobile: req.body.mobile });
     if (!userRegistered) {
