@@ -472,26 +472,23 @@ exports.verifyloginOTP = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) {
-            return createResponse(res, 404, "User not found");
+            return res.status(404).send({ message: "User not found" });
         }
         if (otp !== user.otp) {
-            return createResponse(res, 401, "Invalid OTP");
+            return res.status(404).send({ message: "Invalid OTP" });
         }
         user.accountVerification = true;
         await user.save();
         jwt.sign({ user_id: user._id }, JWTkey, (err, token) => {
             if (err) {
-                return res.status(401).send("Invalid Credentials");
+                return res.status(401).send({ message: "Invalid Credentials" });
             } else {
-                return createResponse(res, 200, "OTP verified successfully", {
-                    userId: user._id,
-                    token: token,
-                });
+                return res.status(200).send({ status: 200, message: "OTP verified successfully", userId: user._id, token: token, });
             }
         });
     } catch (err) {
         console.error(err);
-        return createResponse(res, 500, "Internal server error");
+        return res.status(500).send({ status: 500, message: "Internal server error" });
     }
 };
 exports.socialLogin = async (req, res) => {
