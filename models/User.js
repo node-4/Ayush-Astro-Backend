@@ -50,6 +50,9 @@ const userSchema = new mongoose.Schema(
         pincode: {
             type: String,
         },
+        dob: {
+            type: String,
+        },
         otp: {
             type: String,
         },
