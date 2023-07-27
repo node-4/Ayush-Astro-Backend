@@ -71,14 +71,14 @@ exports.signUpUser = async (req, res) => {
     return res.status(402).send("Already existing");
   }
   if (password !== confirmpassword) {
-    res.status(401).json({ message: "Password is not match " })
+   return res.status(401).json({ message: "Password is not match " })
   }
   encryptedPassword = await bcrypt.hash(password, 10);
   const newUser = await createUser(firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, specification, fees, rating, link, aboutMe, gender, dailyhoures, experience);
   if (!newUser[0]) {
     return res.status(400).send({ message: "Unable to create new user", });
   }
-  res.send({ otp: newUser });
+  return res.send({ otp: newUser });
 };
 
 const createUser = async (firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, specification, fees, rating, link, aboutMe, gender, dailyhoures, experience) => {
