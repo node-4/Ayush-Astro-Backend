@@ -233,7 +233,7 @@ exports.userMiddleware = async (req, res, next) => {
 // Verify
 
 module.exports.signUpUser = async (req, res) => {
-    const { firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, link, } = req.body;
+    const { firstName, lastName, dob, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, link, } = req.body;
     if (!firstName && !lastName && !email && !password && !confirmpassword) {
         return res.status(501).json({ message: "All field are required" });
     }
