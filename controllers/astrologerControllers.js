@@ -90,12 +90,12 @@ const createUser = async (firstName, lastName, password, confirmpassword, addres
     if (!newUser) {
       return [false, "Unable to sign you up"];
     } else {
-      let b = await sendSMS(`+91${mobile}`, otpGenerated);
-      if (b) {
-        return newUser.otp;
-      } else {
-        return newUser.otp;
-      }
+      // let b = await sendSMS(`+91${mobile}`, otpGenerated);
+      // if (b) {
+      return newUser.otp;
+      // } else {
+      //   return newUser.otp;
+      // }
     }
   } catch (error) {
     return [false, "Unable to sign up, Please try again later", error];
