@@ -237,7 +237,6 @@ module.exports.signUpUser = async (req, res) => {
     if (!firstName && !lastName && !email && !password && !confirmpassword) {
         return res.status(501).json({ message: "All field are required" });
     }
-    // Check if user already exist
     const Existing = await User.findOne({ mobile });
     if (Existing) {
         return res.status(409).json({ message: "Already existing " });
@@ -260,10 +259,10 @@ const createUser = async (firstName, lastName, dob, password, confirmpassword, a
     const newUser = await User.create({ firstName, lastName, dob, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, link, password: hashedPassword, confirmpassword: confirmPassword, otp: otpGenerated, });
     if (!newUser) { return [false, "Unable to sign you up"]; }
     try {
-        let b = await sendSMS(`+91${mobile}`, otpGenerated);
-        if (b) {
+        // let b = await sendSMS(`+91${mobile}`, otpGenerated);
+        // if (b) {
             return newUser.otp;
-        }
+        // }
     } catch (error) {
         return [false, "Unable to sign up, Please try again later", error];
     }
@@ -451,15 +450,15 @@ exports.loginWithOTP = async (req, res) => {
         } else {
             userRegistered.otp = otp;
             userRegistered.accountVerification = false;
-            let b = await sendSMS(`+91${req.body.mobile}`, otp);
-            if (b) {
+            // let b = await sendSMS(`+91${req.body.mobile}`, otp);
+            // if (b) {
                 await userRegistered.save();
                 return res.status(200).send({
                     userId: userRegistered._id,
                     otp: otp,
                     message: "otp sent",
                 });
-            }
+            // }
         }
     } catch (err) {
         console.error(err);
