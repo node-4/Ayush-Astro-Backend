@@ -279,6 +279,10 @@ exports.updateAstro = async (req, res) => {
     if (findAstro) {
       const hashedPassword = await encrypt(password);
       const confirmPassword = await encrypt(confirmpassword)
+      let image;
+      if (req.file) {
+        image = req.file.path
+      }
       let obj = {
         firstName: firstName || findAstro.firstName,
         lastName: lastName || findAstro.lastName,
@@ -292,6 +296,7 @@ exports.updateAstro = async (req, res) => {
         district: district || findAstro.district,
         pincode: pincode || findAstro.pincode,
         gender: gender || findAstro.gender,
+        image: image || findAstro.image,
         dailyhoures: dailyhoures || findAstro.dailyhoures,
       }
       let update = await astrologer.findByIdAndUpdate({ _id: req.params.id }, { obj }, { new: true })

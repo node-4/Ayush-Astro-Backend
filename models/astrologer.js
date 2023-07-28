@@ -40,6 +40,9 @@ const AstrologerSchema = new mongoose.Schema({
   gender: {
     type: String,
   },
+  image: {
+    type: String,
+  },
   state: {
     type: String,
     required: false
