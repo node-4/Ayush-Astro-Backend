@@ -25,4 +25,6 @@ router.get('/all', astroControllers.GetAllAstro)
 router.put('/update/:id', upload.single("image"), astroControllers.updateAstro);
 router.put('/updateCallStatus/:id', isAuthenticated, astroControllers.updateCallStatus);
 router.post('/loginWithOTP', astroControllers.loginWithOTP);
+router.get('/getAllReview/:id', astroControllers.getAllReview);
+
 module.exports = router;

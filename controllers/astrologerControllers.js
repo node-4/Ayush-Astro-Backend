@@ -353,3 +353,15 @@ exports.loginWithOTP = async (req, res) => {
   }
 };
 
+exports.getAllReview = async (req, res) => {
+  try {
+    const data = await review.find({ astroId: req.params.id }).populate('astroId').populate("user")
+    res.status(200).json({
+      message: "ok",
+      data: data
+    })
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send({ msg: "internal server error ", error: err.message });
+  }
+}
