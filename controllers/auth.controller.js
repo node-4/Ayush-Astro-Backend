@@ -206,11 +206,12 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.isAuthenticated = async (req, res, next) => {
+    console.log(req.headers.authorization);
     if (req.headers.authorization) {
         console.log("entered authorization");
         const token = req.headers.authorization.split(" ")[1];
         const user = jwt.verify(token, JWTkey);
-        req.user = user.id;
+        req.user = user.id || user.user_id;
         next();
     } else {
         return res.status(401).json({ message: "Authorization required" });
@@ -261,7 +262,7 @@ const createUser = async (firstName, lastName, dob, password, confirmpassword, a
     try {
         // let b = await sendSMS(`+91${mobile}`, otpGenerated);
         // if (b) {
-            return newUser.otp;
+        return newUser.otp;
         // }
     } catch (error) {
         return [false, "Unable to sign up, Please try again later", error];
@@ -452,12 +453,12 @@ exports.loginWithOTP = async (req, res) => {
             userRegistered.accountVerification = false;
             // let b = await sendSMS(`+91${req.body.mobile}`, otp);
             // if (b) {
-                await userRegistered.save();
-                return res.status(200).send({
-                    userId: userRegistered._id,
-                    otp: otp,
-                    message: "otp sent",
-                });
+            await userRegistered.save();
+            return res.status(200).send({
+                userId: userRegistered._id,
+                otp: otp,
+                message: "otp sent",
+            });
             // }
         }
     } catch (err) {
@@ -519,5 +520,34 @@ exports.socialLogin = async (req, res) => {
     } catch (err) {
         console.error(err);
         return res.status(500).send({ status: 500, message: "Internal server error" });
+    }
+};
+
+module.exports.updateProfile = async (req, res) => {
+    try {
+        const { firstName, lastName, mobile, dob } = req.body;
+        let id = req.user
+        console.log("-----------------------", id);
+        let findUser = await User.findOne({ _id: id });
+        if (!findUser) {
+            res.status(404).json({ message: "User id not found.", status: false });
+        } else {
+            let image;
+            if (req.file) {
+                image = req.file.path
+            }
+            let obj = {
+                firstName: firstName || findUser.firstName,
+                lastName: lastName || findUser.lastName,
+                image: image || findUser.image,
+                mobile: mobile || findUser.mobile,
+                dob: dob || findUser.dob,
+            }
+            let UpdateUser = await User.findByIdAndUpdate({ _id: findUser._id }, { $set: obj }, { new: true });
+            res.status(200).json({ message: "Update is successfull", status: true, UpdateUser, });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ message: "Update is successfull", status: false, });
     }
 };

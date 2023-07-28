@@ -1,19 +1,23 @@
 const router = require("express").Router();
 const authController = require("../controllers/auth.controller");
 const { isAuthenticated } = require("../controllers/auth.controller");
+// var multer = require("multer");
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, "public/images");
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, file.originalname);
+//     },
+// });
+
+// var upload = multer({ storage: storage });
 var multer = require("multer");
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "public/images");
-    },
-    filename: function (req, file, cb) {
-        // console.log(file);
-        cb(null, file.originalname);
-    },
-});
-
-var upload = multer({ storage: storage });
-
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("cloudinary").v2;
+cloudinary.config({ cloud_name: "djgrqoefp", api_key: "274167243253962", api_secret: "3mkqkDDusI5Hf4flGNkJNz4PHYg", });
+const storage = new CloudinaryStorage({ cloudinary: cloudinary, params: { folder: "ayush/images/Profile", allowed_formats: ["jpg", "jpeg", "png", "PNG", "xlsx", "xls", "pdf", "PDF"], }, });
+const upload = multer({ storage: storage });
 router.post("/signUp", authController.signUpUser);
 router.post("/socialLogin", authController.socialLogin);
 router.post("/sendOTP", authController.sendOTP);
@@ -47,4 +51,5 @@ router.patch(
     authController.UpdateBlogs
 );
 
+router.put("/updateProfile", isAuthenticated,upload.single("image"), authController.updateProfile);
 module.exports = router;
