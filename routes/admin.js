@@ -39,13 +39,13 @@ router.patch(
 );
 
 
-router.get('/allusers/',isAuthenticated, UserControllers.getAllUsers);
+router.get('/allusers/', isAuthenticated, UserControllers.getAllUsers);
 router.delete('/userdelete/:user_Name', isAuthenticated, UserControllers.deleteUserName)
 // Add Charges Router 
 router.post('/fees/:id', isAuthenticated, admin.AddChargesofAstro);
 router.get('/fees', isAuthenticated, admin.GetAllFessDetails);
 router.delete('/fees', isAuthenticated, admin.DeleteFeedetails);
-router.put('/fees', isAuthenticated, admin.UpdateFees );
+router.put('/fees', isAuthenticated, admin.UpdateFees);
 router.get('/fees/:id', isAuthenticated, admin.GetFeesByAstroId)
 
 
@@ -55,10 +55,10 @@ router.post("/add-feedback", isAuthenticated, admin.UserFeedback);
 router.get("/view-feedback", isAuthenticated, admin.ViewAllFeedback);
 
 // Astrologer 
-router.get('/astro',  isAuthenticated, admin.allAstro);
-router.post('/astro/', isAuthenticated,astroControllers.signUpUser);
-router.delete('/astro/:id', isAuthenticated,astroControllers.deleteAstroName);
-router.put('/astro/:id',isAuthenticated,astroControllers.updateAstro);
+router.get('/astro', isAuthenticated, admin.allAstro);
+router.post('/astro/', isAuthenticated, astroControllers.signUpUser);
+router.delete('/astro/:id', isAuthenticated, astroControllers.deleteAstroName);
+router.put('/astro/:id', isAuthenticated, astroControllers.updateAstro);
 
 
 //Add Notification 
@@ -72,8 +72,9 @@ router.delete('/notification', notificationControllers.deleteNotification)
 router.post('/testimonial', testimonalControllers.AddTestimonial);
 router.get('/testimonial', testimonalControllers.getTestimonial);
 router.delete('/testimonial/:id', testimonalControllers.deleteTestmoial);
-
-
-
+router.post('/addAppDetail', admin.addAppDetail);
+router.get('/getAllappDetail', admin.getAllappDetail);
+router.get('/appDetail/:id', admin.getAppDetailById)
+router.delete('/appDetail/:id', admin.deleteAppDetail)
 
 module.exports = router;

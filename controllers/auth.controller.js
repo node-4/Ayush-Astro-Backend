@@ -10,6 +10,8 @@ const blog = require("../models/blog");
 const dotenv = require("dotenv");
 const wallet = require("../models/wallet");
 const otpGenerator = require("otp-generator");
+const review = require("../models/review");
+const astrologer = require("../models/astrologer");
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -551,3 +553,79 @@ module.exports.updateProfile = async (req, res) => {
         res.status(400).json({ message: "Update is successfull", status: false, });
     }
 };
+
+
+exports.AddReview = async (req, res) => {
+    try {
+        const data = {
+            user: req.user,
+            astroId: req.body.astroId,
+            rating: parseInt(req.body.rating),
+            comment: req.body.comment
+        }
+        const result = await review.create(data)
+        const Review = await review.findById(result._id).populate('user astroId');
+
+        res.status(200).json({ status: 200, message: "Review is Added ", data: Review })
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send({ msg: "internal server error ", error: err.message });
+    }
+}
+exports.getAllReview = async (req, res) => {
+    try {
+        const data = await review.find().populate('user astroId')
+        res.status(200).json({
+            message: "ok",
+            data: data
+        })
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send({ msg: "internal server error ", error: err.message });
+    }
+}
+exports.getAllbyToken = async (req, res) => {
+    try {
+        const data = await review.find({ user: req.user }).populate('astroId').populate("user")
+        res.status(200).json({
+            message: "ok",
+            data: data
+        })
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send({ msg: "internal server error ", error: err.message });
+    }
+}
+exports.getReviewById = async (req, res) => {
+    try {
+        const Review = await review.findById(req.params.id);
+        res.status(200).json({ message: "ok", data: Review })
+    } catch (error) {
+        console.error('Error getting review by ID:', error);
+    }
+};
+exports.updateReview = async (req, res) => {
+    try {
+        const Review = await review.findById(req.params.id);
+
+        const obj = {
+            user: req.user,
+            astroId: req.body.astroId || Review.astroId,
+            rating: parseInt(req.body.rating) || Review.rating,
+            comment: req.body.comment || Review.comment,
+        }
+        const update = await review.findByIdAndUpdate(req.params.id, obj, { new: true, });
+        res.status(200).json({ message: "ok", data: update })
+    } catch (error) {
+        console.error('Error updating review:', error);
+    }
+};
+exports.deleteReview = async (req, res) => {
+    try {
+        const Review = await review.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: "ok", data: Review })
+    } catch (error) {
+        console.error('Error deleting review:', error);
+    }
+};
+

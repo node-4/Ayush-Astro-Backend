@@ -15,7 +15,7 @@ const blog = require("../models/blog");
 const feedback = require("../models/feedback");
 const fees = require('../models/fees_Models')
 const astrologer = require('../models/astrologer');
-
+const appDetail = require('../models/appDetail');
 
 const sendSMS = async (to, otp) => {
   const from = "+19287568632";
@@ -213,7 +213,7 @@ exports.RemovedBlogs = async (req, res) => {
 
 // Feedback-----
 exports.UserFeedback = async (req, res) => {
-  let { UserId,  Feedback } = req.body;
+  let { UserId, Feedback } = req.body;
 
   try {
     if (!(UserId && Feedback)) {
@@ -221,10 +221,10 @@ exports.UserFeedback = async (req, res) => {
         .status(400)
         .json({ message: "All fields are required", status: false });
     } else {
-      const userData = await User.findById({_id: UserId});
+      const userData = await User.findById({ _id: UserId });
       const data = {
-        UserId: UserId, 
-        Feedback: Feedback, 
+        UserId: UserId,
+        Feedback: Feedback,
         name: userData.firstName
       }
       const NewUserFeedback = await feedback.create(data);
@@ -270,8 +270,8 @@ exports.AddChargesofAstro = async (req, res) => {
       fees: req.body.fees
     }
 
-    await astrologer.findByIdAndUpdate({_id: req.params.id},{
-      fees:[req.body.fees]
+    await astrologer.findByIdAndUpdate({ _id: req.params.id }, {
+      fees: [req.body.fees]
     })
     const Data = await fees.create(data);
     res.status(200).json({
@@ -285,7 +285,6 @@ exports.AddChargesofAstro = async (req, res) => {
   }
 }
 
-
 exports.GetAllFessDetails = async (req, res) => {
   try {
     const data = await fees.find();
@@ -297,7 +296,6 @@ exports.GetAllFessDetails = async (req, res) => {
     res.status(400).json({ message: err.message })
   }
 }
-
 exports.GetFeesByAstroId = async (req, res) => {
   try {
     const data = await fees.find({ astroId: req.params.id });
@@ -311,8 +309,6 @@ exports.GetFeesByAstroId = async (req, res) => {
     })
   }
 }
-
-
 exports.UpdateFees = async (req, res) => {
   try {
     await fees.updateOne({ astroId: req.params.id }, {
@@ -346,7 +342,7 @@ exports.allAstro = async (req, res) => {
   try {
     const users = await astrologer.find();
     res.status(200).json({
-      details: users, 
+      details: users,
     })
   } catch (err) {
     res.status(400).json({
@@ -354,3 +350,56 @@ exports.allAstro = async (req, res) => {
     })
   }
 }
+
+exports.addAppDetail = async (req, res) => {
+  try {
+    const Review = await appDetail.findOne();
+    if (Review) {
+      const obj = {
+        appLink: req.body.appLink || Review.appLink,
+        message: req.body.message || Review.message
+      }
+      const update = await appDetail.findByIdAndUpdate(req.params.id, obj, { new: true, });
+      res.status(200).json({ status: 200, message: "App Detail is Added ", data: update })
+    } else {
+      const data = {
+        appLink: req.body.appLink,
+        message: req.body.message
+      }
+      const result = await appDetail.create(data)
+      res.status(200).json({ status: 200, message: "App Detail is Added ", data: result })
+    }
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send({ msg: "internal server error ", error: err.message });
+  }
+}
+exports.getAllappDetail = async (req, res) => {
+  try {
+    const data = await appDetail.find();
+    res.status(200).json({
+      message: "ok",
+      data: data
+    })
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send({ msg: "internal server error ", error: err.message });
+  }
+}
+exports.getAppDetailById = async (req, res) => {
+  try {
+    const Review = await appDetail.findById(req.params.id);
+    res.status(200).json({ message: "ok", data: Review })
+  } catch (error) {
+    console.error('Error getting review by ID:', error);
+  }
+};
+exports.deleteAppDetail = async (req, res) => {
+  try {
+    const Review = await appDetail.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "ok", data: Review })
+  } catch (error) {
+    console.error('Error deleting review:', error);
+  }
+};
+

@@ -26,30 +26,16 @@ router.post("/sign/verify", authController.verifyOTPSignedIn);
 router.post("/login", authController.login);
 router.post("/loginWithOTP", authController.loginWithOTP);
 router.post("/verifyloginOTP/:id", authController.verifyloginOTP);
+router.post("/update-profile", isAuthenticated, authController.updateUserProfile);
+router.get("/view-user-profiles", isAuthenticated, authController.GetUserProfiles);
+router.post("/user-blog", upload.single("myField"), isAuthenticated, authController.postuserBlogs);
+router.patch("/edit-user-blog/:id", upload.single("myField"), isAuthenticated, authController.UpdateBlogs);
+router.put("/updateProfile", isAuthenticated, upload.single("image"), authController.updateProfile);
+router.post('/addReview',isAuthenticated, authController.AddReview);
+router.get('/review', authController.getAllReview);
+router.get('/review/bytoken', isAuthenticated, authController.getAllbyToken);
+router.get('/review/:id', authController.getReviewById)
+router.put('/review/:id', authController.updateReview)
+router.delete('/review/:id', authController.deleteReview)
 
-router.post(
-    "/update-profile",
-    isAuthenticated,
-    authController.updateUserProfile
-);
-router.get(
-    "/view-user-profiles",
-    isAuthenticated,
-    authController.GetUserProfiles
-);
-
-router.post(
-    "/user-blog",
-    upload.single("myField"),
-    isAuthenticated,
-    authController.postuserBlogs
-);
-router.patch(
-    "/edit-user-blog/:id",
-    upload.single("myField"),
-    isAuthenticated,
-    authController.UpdateBlogs
-);
-
-router.put("/updateProfile", isAuthenticated,upload.single("image"), authController.updateProfile);
 module.exports = router;
