@@ -27,7 +27,8 @@ exports.removeMoney = catchAsync(async (req, res) => {
 });
 
 exports.getWallet = catchAsync(async (req, res) => {
-    const wallet = await Wallet.findOne({ user: req.params.id });
+    console.log(req.user);
+    const wallet = await Wallet.findOne({ user: req.user });
     res.status(200).json({
         status: "success",
         data: wallet,
@@ -51,7 +52,7 @@ exports.createWallet = catchAsync(async (req, res) => {
         res.status(404).json({ message: "Enter the correct id", status: 404 });
     } else {
         const wallet = await Wallet.findOne({ user: req.body.userId });
-        if (!wallet) {
+        if (wallet) {
             res.status(409).json({ message: "This user id wallet already exit", status: 409 });
         }
         const w = await Wallet.create({ user: req.body.userId });
