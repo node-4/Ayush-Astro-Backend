@@ -71,7 +71,7 @@ exports.signUpUser = async (req, res) => {
     return res.status(402).send("Already existing");
   }
   if (password !== confirmpassword) {
-   return res.status(401).json({ message: "Password is not match " })
+    return res.status(401).json({ message: "Password is not match " })
   }
   encryptedPassword = await bcrypt.hash(password, 10);
   const newUser = await createUser(firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, specification, fees, rating, link, aboutMe, gender, dailyhoures, experience);
@@ -274,13 +274,29 @@ exports.GetAllAstro = async (req, res) => {
 
 exports.updateAstro = async (req, res) => {
   try {
-    const { firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, specification, fees, rating, aboutMe } = req.body;
-    await astrologer.findByIdAndUpdate({ _id: req.params.id }, {
-      firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, language, rashi, desc, skills, specification, fees, rating, aboutMe,
-    })
-    res.status(200).json({
-      message: "Updated "
-    })
+    const { firstName, lastName, password, confirmpassword, address, email, mobile, country, state, district, pincode, gender, dailyhoures } = req.body;
+    let findAstro = await astrologer.findById({ _id: req.params.id });
+    if (findAstro) {
+      const hashedPassword = await encrypt(password);
+      const confirmPassword = await encrypt(confirmpassword)
+      let obj = {
+        firstName: firstName || findAstro.firstName,
+        lastName: lastName || findAstro.lastName,
+        address: address || findAstro.address,
+        password: hashedPassword || findAstro.password,
+        confirmpassword: confirmPassword || findAstro.confirmpassword,
+        email: email || findAstro.email,
+        mobile: mobile || findAstro.mobile,
+        country: country || findAstro.country,
+        state: state || findAstro.state,
+        district: district || findAstro.district,
+        pincode: pincode || findAstro.pincode,
+        gender: gender || findAstro.gender,
+        dailyhoures: dailyhoures || findAstro.dailyhoures,
+      }
+      let update = await astrologer.findByIdAndUpdate({ _id: req.params.id }, { obj }, { new: true })
+      res.status(200).json({ message: "Updated " })
+    }
   } catch (err) {
     console.log(err);
     res.state(400).json({
