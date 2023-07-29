@@ -255,21 +255,49 @@ module.exports.getAllBlogs = async (req, res) => {
   }
 };
 
-module.exports.getAllUsers = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find();
+    const { fromDate, toDate, page, limit } = req.query;
+    let query = {};
+    if (fromDate && !toDate) {
+      query.createdAt = { $gte: fromDate };
+    }
+    if (!fromDate && toDate) {
+      query.createdAt = { $lte: toDate };
+    }
+    if (fromDate && toDate) {
+      query.$and = [
+        { createdAt: { $gte: fromDate } },
+        { createdAt: { $lte: toDate } },
+      ]
+    }
+    let options = {
+      page: Number(page),
+      limit: Number(limit) ||10,
+      sort: { createdAt: -1 },
+    };
+    let data = await User.paginate(query, options);
+    return res.status(200).json({ status: 200, message: "User data found.", data: data });
 
-    res.status(200).json({
-      status: "success",
-      data: users,
-    });
   } catch (err) {
-    res.status(400).json({
-      status: "failure",
-      message: err.message,
-    });
+    return res.status(500).send({ msg: "internal server error ", error: err.message, });
   }
 };
+// module.exports.getAllUsers = async (req, res) => {
+//   try {
+//     const users = await User.find();
+
+//     res.status(200).json({
+//       status: "success",
+//       data: users,
+//     });
+//   } catch (err) {
+//     res.status(400).json({
+//       status: "failure",
+//       message: err.message,
+//     });
+//   }
+// };
 
 // FeedBack 
 
