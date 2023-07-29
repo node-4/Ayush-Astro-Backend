@@ -250,26 +250,53 @@ exports.deleteLanguages = async (req, res) => {
     res.status(400).json({ message: error.message, status: false });
   }
 };
-
 exports.GetAllAstro = async (req, res) => {
   try {
-    console.log("---------54665--");
-    // const users = await astrologer.find();
-    const astro = await astrologer.find()
+    const { fromDate, toDate, page, limit } = req.query;
+    let query = {};
+    if (fromDate && !toDate) {
+      query.createdAt = { $gte: fromDate };
+    }
+    if (!fromDate && toDate) {
+      query.createdAt = { $lte: toDate };
+    }
+    if (fromDate && toDate) {
+      query.$and = [
+        { createdAt: { $gte: fromDate } },
+        { createdAt: { $lte: toDate } },
+      ]
+    }
+    let options = {
+      page: Number(page),
+      limit: Number(limit) ||10,
+      sort: { createdAt: -1 },
+    };
+    let data = await astrologer.paginate(query, options);
+    return res.status(200).json({ status: 200, message: "astrologer data found.", data: data });
 
-    console.log(astro);
-
-    res.status(200).json({
-      status: "success",
-      data: astro
-    });
   } catch (err) {
-    res.status(400).json({
-      status: "failure",
-      message: err.message,
-    });
+    return res.status(500).send({ msg: "internal server error ", error: err.message, });
   }
-}
+};
+// exports.GetAllAstro = async (req, res) => {
+//   try {
+//     console.log("---------54665--");
+//     // const users = await astrologer.find();
+//     const astro = await astrologer.find()
+
+//     console.log(astro);
+
+//     res.status(200).json({
+//       status: "success",
+//       data: astro
+//     });
+//   } catch (err) {
+//     res.status(400).json({
+//       status: "failure",
+//       message: err.message,
+//     });
+//   }
+// }
 
 
 exports.updateAstro = async (req, res) => {

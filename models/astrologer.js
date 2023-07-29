@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-
+const mongoosePaginate = require("mongoose-paginate");
+const mongooseAggregatePaginate = require("mongoose-aggregate-paginate");
 const AstrologerSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -88,5 +89,6 @@ const AstrologerSchema = new mongoose.Schema({
     enum: ["Engaged", "Not Engaged"]
   },
 });
-
+AstrologerSchema.plugin(mongoosePaginate);
+AstrologerSchema.plugin(mongooseAggregatePaginate);
 module.exports = mongoose.model("astrologer", AstrologerSchema);
