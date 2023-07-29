@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", require("./routes/auth.route"));
+app.use("/transaction", require("./routes/transaction"));
 app.use("/user", require("./routes/userRoutes"));
 app.use('/astrologer', require("./routes/astrologer"));
 app.use('/horoscope', require("./routes/horoScopeRoute"));

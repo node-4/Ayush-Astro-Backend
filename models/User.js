@@ -74,7 +74,6 @@ const userSchema = new mongoose.Schema(
             type: String,
         },
         skills: [],
-
         ReferCode: { type: String, unique: false },
         referStatus: {
             type: String,
