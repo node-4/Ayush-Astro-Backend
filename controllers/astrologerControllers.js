@@ -165,7 +165,7 @@ exports.ViewDataProfiles = async (req, res) => {
     } else {
       res.status(200).json({
         message: "User Details is Created successfully",
-        data: getDetails,
+        user: getDetails,
         status: true,
       });
     }
