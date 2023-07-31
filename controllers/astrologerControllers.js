@@ -268,7 +268,7 @@ exports.GetAllAstro = async (req, res) => {
     }
     let options = {
       page: Number(page),
-      limit: Number(limit) ||10,
+      limit: Number(limit) || 10,
       sort: { createdAt: -1 },
     };
     let data = await astrologer.paginate(query, options);
@@ -309,6 +309,7 @@ exports.updateAstro = async (req, res) => {
       let image;
       if (req.file) {
         image = req.file.path
+        console.log(req.file);
       }
       let obj = {
         firstName: firstName || findAstro.firstName,
@@ -326,12 +327,13 @@ exports.updateAstro = async (req, res) => {
         image: image || findAstro.image,
         dailyhoures: dailyhoures || findAstro.dailyhoures,
       }
-      let update = await astrologer.findByIdAndUpdate({ _id: req.params.id }, { obj }, { new: true })
-      res.status(200).json({ message: "Updated " })
+      console.log(obj);
+      let update = await astrologer.findByIdAndUpdate({ _id: req.params.id }, { $set: obj }, { new: true })
+      return res.status(200).json({ message: "Updated ", data: update })
     }
   } catch (err) {
     console.log(err);
-    res.state(400).json({
+    return res.state(400).json({
       err: err.message
     })
   }
