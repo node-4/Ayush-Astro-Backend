@@ -42,7 +42,7 @@ const createUser = async (firstName, lastName, password, confirmpassword, addres
     return [false, "Unable to sign you up"];
   }
   try {
- 
+
     return [true, newUser];
   } catch (error) {
     return [false, "Unable to sign up, Please try again later", error];
@@ -59,7 +59,7 @@ module.exports.ViewDataProfiles = async (req, res) => {
     } else {
       res.status(200).json({
         message: "User Details is Created successfully",
-        data: getDetails,
+        user: getDetails,
         status: true,
       });
     }
@@ -273,7 +273,7 @@ exports.getAllUsers = async (req, res) => {
     }
     let options = {
       page: Number(page),
-      limit: Number(limit) ||10,
+      limit: Number(limit) || 10,
       sort: { createdAt: -1 },
     };
     let data = await User.paginate(query, options);
