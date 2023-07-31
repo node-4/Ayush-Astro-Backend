@@ -190,7 +190,7 @@ exports.SearchAstroNameLangSkills = async (req, res) => {
     } else {
       res.json({
         message: " Data  is found Successfully",
-        student: student,
+        data: student,
         status: true,
       });
     }

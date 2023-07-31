@@ -152,7 +152,7 @@ module.exports.SearchUserNameLangSkills = async (req, res) => {
     } else {
       res.json({
         message: " Data  is found Successfully",
-        student: student,
+        data: student,
         status: true,
       });
     }
@@ -173,7 +173,7 @@ module.exports.SearchUserName = async (req, res) => {
     } else {
       res.json({
         message: " USer  is found",
-        student: student,
+        data: student,
         status: true,
       });
     }
@@ -194,7 +194,7 @@ module.exports.SearchAnyLanguagesName = async (req, res) => {
     } else {
       res.json({
         message: "Languages  is found",
-        student: student,
+        data: student,
         status: true,
       });
     }
