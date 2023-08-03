@@ -88,7 +88,7 @@ const AstrologerSchema = new mongoose.Schema({
     type: String,
     enum: ["Engaged", "Not Engaged"]
   },
-});
+}, { timestamps: true });
 AstrologerSchema.plugin(mongoosePaginate);
 AstrologerSchema.plugin(mongooseAggregatePaginate);
 module.exports = mongoose.model("astrologer", AstrologerSchema);
