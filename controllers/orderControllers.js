@@ -14,6 +14,7 @@ exports.CreateOrder = async (req, res) => {
             astroName: astroData.firstName,
             user: userId,
             astroId: req.body.astroId,
+            type: req.body.type,
             time: req.body.time,
             name: userData.firstName + " " + userData.lastName,
             problem: req.body.problem,
