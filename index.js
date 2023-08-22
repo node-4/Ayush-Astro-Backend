@@ -36,6 +36,7 @@ app.use("/admin", require("./routes/admin"));
 app.use("/banner", require("./routes/bannerRoutes"));
 app.use("/notification", require("./routes/notificationRouter"));
 app.use("/support", require("./routes/supportRoute"));
+app.use('/userAstroChat', require('./routes/chatRouter'))
 mongoose.Promise = global.Promise;
 mongoose.set("strictQuery", true);
 

@@ -13,6 +13,7 @@ router.use('/discount', require('./discountRouter'));
 router.use('/chat', require('./chatHistory'))
 router.use('/agora', require('./agoreRouter.'))
 
+router.use('/userAstroChat', require('./chatRouter'))
 
 // router.use('/product', require('./product'))
 router.use("/admin", require("./admin"));
