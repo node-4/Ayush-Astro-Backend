@@ -198,58 +198,62 @@ exports.userChat = async (req, res) => {
 };
 exports.viewChat = async (req, res) => {
     try {
-        let userData = await userModel.findOne({ _id: req.query.userId });
+        let userData = await userModel.findOne({ _id: req.params.userId });
         if (!userData) {
             return res.status(404).json({ status: 404, message: "User not found.", data: {} });
         }
-        let astroData = await astrologer.findOne({ _id: req.query.userId });
+        let newMessages = []
+        return new Promise(async (resolve, reject) => {
+            let view = await chatModel.findOne({ userId: userData._id, astroId: req.params.astroId }).populate("userId astroId", "firstName lastName").sort({ "messageDetail.time": -1 })
+            if (!view) {
+                return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
+            } else {
+                view.messageDetail.map(o => {
+                    if ((view.userId._id).toString() == userData._id) {
+                        o.messageStatus1 = "Read";
+                        o.messageStatus2 = "Unread";
+                    }
+                    newMessages.push(o)
+                })
+                let update = await chatModel.findOneAndUpdate({ _id: view._id }, { $set: { messageDetail: newMessages } }, { new: true });
+                if (update) {
+                    let chat = await chatModel.findOne(update._id).populate("userId astroId", "firstName lastName").sort({ "messages.time": -1 })
+                    return res.status(200).json({ status: 200, message: "Data found successfully.", data: chat });
+                }
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ status: 500, message: 'Internal server error' });
+    }
+};
+exports.viewChat1 = async (req, res) => {
+    try {
+        let astroData = await astrologer.findOne({ _id: req.params.astroId });
         if (!astroData) {
             return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
         }
-        if (astroData != (null || undefined) && userData == (null || undefined)) {
-            let newMessages = []
-            return new Promise(async (resolve, reject) => {
-                let view = await chatModel.findOne({ _id: req.query._id }).populate("userId astroId", "firstName lastName").sort({ "messageDetail.time": -1 })
-                if (!view) {
-                    return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
-                } else {
-                    view.messageDetail.map(o => {
-                        if ((view.astroId._id).toString() == astroData._id) {
-                            o.messageStatus1 = "Unread";
-                            o.messageStatus2 = "Read";
-                        }
-                        newMessages.push(o)
-                    })
-                    let update = await chatModel.findOneAndUpdate({ _id: view._id }, { $set: { messageDetail: newMessages } }, { new: true });
-                    if (update) {
-                        let chat = await chatModel.findOne(update._id).populate("userId astroId", "firstName lastName").sort({ "messages.time": -1 })
-                        return res.status(200).json({ status: 200, message: "Data found successfully.", data: chat });
+        let newMessages = []
+        return new Promise(async (resolve, reject) => {
+            let view = await chatModel.findOne({ astroId: astroData._id, userId: req.params.userId }).populate("userId astroId", "firstName lastName").sort({ "messageDetail.time": -1 })
+            if (!view) {
+                return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
+            } else {
+                view.messageDetail.map(o => {
+                    if ((view.astroId._id).toString() == astroData._id) {
+                        o.messageStatus1 = "Unread";
+                        o.messageStatus2 = "Read";
                     }
+                    newMessages.push(o)
+                })
+                let update = await chatModel.findOneAndUpdate({ _id: view._id }, { $set: { messageDetail: newMessages } }, { new: true });
+                if (update) {
+                    let chat = await chatModel.findOne(update._id).populate("userId astroId", "firstName lastName").sort({ "messages.time": -1 })
+                    return res.status(200).json({ status: 200, message: "Data found successfully.", data: chat });
                 }
-            })
-        }
-        if (astroData == (null || undefined) && userData != (null || undefined)) {
-            let newMessages = []
-            return new Promise(async (resolve, reject) => {
-                let view = await chatModel.findOne({ _id: req.query._id }).populate("userId astroId", "firstName lastName").sort({ "messageDetail.time": -1 })
-                if (!view) {
-                    return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
-                } else {
-                    view.messageDetail.map(o => {
-                        if ((view.userId._id).toString() == userData._id) {
-                            o.messageStatus1 = "Read";
-                            o.messageStatus2 = "Unread";
-                        }
-                        newMessages.push(o)
-                    })
-                    let update = await chatModel.findOneAndUpdate({ _id: view._id }, { $set: { messageDetail: newMessages } }, { new: true });
-                    if (update) {
-                        let chat = await chatModel.findOne(update._id).populate("userId astroId", "firstName lastName").sort({ "messages.time": -1 })
-                        return res.status(200).json({ status: 200, message: "Data found successfully.", data: chat });
-                    }
-                }
-            })
-        }
+            }
+        })
+
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: 500, message: 'Internal server error' });
