@@ -18,7 +18,7 @@ router.post('/createChat', userController.createChat);
 router.put('/successOrder/:orderId', userController.successOrder);
 router.put('/cancelOrder/:orderId', userController.cancelOrder);
 router.put('/stopChat/:orderId', userController.stopChat);
-router.post('/userChat', cpUpload, userController.userChat);
+router.post('/userChat/:orderId', cpUpload, userController.userChat);
 router.get('/viewChat', userController.viewChat);
 router.get('/chattingHistory/:userId', userController.chattingHistory);
 router.delete('/deleteChat', userController.deleteChat);
