@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 const chatSchema = new schema({
+    orderId: {
+        type: String,
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -75,6 +78,24 @@ const chatSchema = new schema({
             default: "Unread"
         },
     }],
+    time: {
+        type: String,
+    },
+    chatStatus: {
+        type: String,
+        enum: ["start", "stop", "pending"],
+        default: "pending",
+    },
+    orderStatus: {
+        type: String,
+        enum: ["unconfirmed", "confirmed"],
+        default: "unconfirmed",
+    },
+    paymentStatus: {
+        type: String,
+        enum: ["pending", "paid", "failed"],
+        default: "pending"
+    },
     status: {
         type: String,
         enum: ["ACTIVE", "BLOCK", "DELETE"],

@@ -1,6 +1,103 @@
 const chatModel = require('../models/chatModel');;
 const userModel = require('../models/User');
 const astrologer = require('../models/astrologer');
+exports.createChat = async (req, res) => {
+    try {
+        let userData = await userModel.findOne({ $and: [{ $or: [{ _id: req.body.senderId }, { _id: req.body.reciverId }] }] });
+        if (!userData) {
+            return res.status(404).json({ status: 404, message: "User not found.", data: {} });
+        } else {
+            let astroData = await astrologer.findOne({ $and: [{ $or: [{ _id: req.body.senderId }, { _id: req.body.reciverId }] }] });
+            if (!astroData) {
+                return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
+            } else {
+                let findOrder = await chatModel.find({ userId: userData._id, astroId: astroData._id, orderStatus: "unconfirmed" });
+                if (findOrder.length > 0) {
+                    for (let i = 0; i < findOrder.length; i++) {
+                        await chatModel.findOneAndDelete({ orderId: findOrder[i].orderId });
+                    }
+                    let orderId = await reffralCode();
+                    let obj = {
+                        orderId: orderId,
+                        time: req.body.time,
+                        userId: userData._id,
+                        astroId: astroData._id,
+                        userName1: `${userData.firstName} ${userData.lastName}`,
+                        userName2: `${astroData.firstName} ${astroData.lastName}`,
+                    }
+                    let saveChat = await chatModel.create(obj);
+                    if (saveChat) {
+                        return res.status(200).json({ status: 200, message: "Message send successfully", data: saveChat });
+                    }
+                } else {
+                    let orderId = await reffralCode();
+                    let obj = {
+                        orderId: orderId,
+                        time: req.body.time,
+                        userId: userData._id,
+                        astroId: astroData._id,
+                        userName1: `${userData.firstName} ${userData.lastName}`,
+                        userName2: `${astroData.firstName} ${astroData.lastName}`,
+                    }
+                    let saveChat = await chatModel.create(obj);
+                    if (saveChat) {
+                        return res.status(200).json({ status: 200, message: "Message send successfully", data: saveChat });
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: 500, message: 'Internal server error' });
+    }
+};
+exports.cancelOrder = async (req, res) => {
+    try {
+        let findUserOrder = await chatModel.findOne({ orderId: req.params.orderId, orderStatus: "unconfirmed", paymentStatus: { $ne: "paid" }, chatStatus: "pending" });
+        if (findUserOrder) {
+            res.status(201).json({ message: "Payment failed.", status: 201, orderId: req.params.orderId });
+        } else {
+            return res.status(404).json({ message: "No data found", data: {} });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(501).send({ status: 501, message: "server error.", data: {}, });
+    }
+};
+exports.successOrder = async (req, res) => {
+    try {
+        let findUserOrder = await chatModel.findOne({ orderId: req.params.orderId, orderStatus: "unconfirmed", paymentStatus: { $ne: "paid" }, chatStatus: "pending" });
+        if (findUserOrder) {
+            let findUserOrder1 = await chatModel.findByIdAndUpdate({ _id: findUserOrder._id }, { $set: { orderStatus: "confirmed", paymentStatus: "paid", chatStatus: "start" } }, { new: true });
+            if (findUserOrder1) {
+                return res.status(200).json({ message: "Payment success.", status: 200, data: findUserOrder1 });
+            }
+        } else {
+            return res.status(404).json({ message: "No data found", data: {} });
+        }
+
+    } catch (error) {
+        console.log(error);
+        return res.status(501).send({ status: 501, message: "server error.", data: {}, });
+    }
+};
+exports.stopChat = async (req, res) => {
+    try {
+        let findUserOrder = await chatModel.findOne({ orderId: req.params.orderId });
+        if (findUserOrder) {
+            let findUserOrder1 = await chatModel.findByIdAndUpdate({ _id: findUserOrder._id }, { $set: { chatStatus: "stop" } }, { new: true });
+            if (findUserOrder1) {
+                return res.status(200).json({ message: "Chat end successfully.", status: 200, data: findUserOrder1 });
+            }
+        } else {
+            return res.status(404).json({ message: "No data found", data: {} });
+        }
+
+    } catch (error) {
+        console.log(error);
+        return res.status(501).send({ status: 501, message: "server error.", data: {}, });
+    }
+};
 exports.userChat = async (req, res) => {
     try {
         let userData = await userModel.findOne({ $and: [{ $or: [{ _id: req.body.senderId }, { _id: req.body.reciverId }] }] });
@@ -22,7 +119,8 @@ exports.userChat = async (req, res) => {
                     messageStatus1 = "Unread"
                     messageStatus2 = "Read"
                 }
-                let chatData = await chatModel.findOne({ $and: [{ userId: userData._id }, { astroId: astroData._id }] });
+
+                let chatData = await chatModel.findOne({ orderId: req.params.orderId, userId: userData._id, astroId: astroData._id, orderStatus: "confirmed", paymentStatus: "paid", chatStatus: "start" });
                 if (chatData) {
                     let messageDetail;
                     if (req.body.Type == "AUDIO") {
@@ -89,77 +187,7 @@ exports.userChat = async (req, res) => {
                         return res.status(200).json({ status: 200, message: "Message send successfully", data: saveChat });
                     }
                 } else {
-                    let messageDetail;
-                    if (req.body.Type == "AUDIO") {
-                        messageDetail = {
-                            sender: req.body.senderId,
-                            userName: userName,
-                            Type: req.body.Type,
-                            audio: req.body.audio,
-                            message: req.body.message,
-                            time: Date.now(),
-                            messageStatus1: messageStatus1,
-                            messageStatus2: messageStatus2
-                        }
-                    } else if (req.body.Type == "VIDEO") {
-                        messageDetail = {
-                            sender: req.body.senderId,
-                            userName: userName,
-                            Type: req.body.Type,
-                            message: req.body.message,
-                            video: req.body.video,
-                            time: Date.now(),
-                            messageStatus1: messageStatus1,
-                            messageStatus2: messageStatus2
-                        }
-                    } else if (req.body.Type == "DOCS") {
-                        let docs = req.files['docs'];
-                        req.body.docs = docs[0].path;
-                        messageDetail = {
-                            sender: req.body.senderId,
-                            userName: userName,
-                            Type: req.body.Type,
-                            message: req.body.message,
-                            docs: req.body.docs,
-                            time: Date.now(),
-                            messageStatus1: messageStatus1,
-                            messageStatus2: messageStatus2
-                        }
-                    } else if (req.body.Type == "IMAGES") {
-                        let image = req.files['image'];
-                        req.body.image = image[0].path;
-                        messageDetail = {
-                            sender: req.body.senderId,
-                            userName: userName,
-                            Type: req.body.Type,
-                            image: req.body.image,
-                            message: req.body.message,
-                            time: Date.now(),
-                            messageStatus1: messageStatus1,
-                            messageStatus2: messageStatus2
-                        }
-                    } else {
-                        messageDetail = {
-                            sender: req.body.senderId,
-                            userName: userName,
-                            Type: req.body.Type,
-                            message: req.body.message,
-                            time: Date.now(),
-                            messageStatus1: messageStatus1,
-                            messageStatus2: messageStatus2
-                        }
-                    }
-                    let obj = {
-                        userId: userData._id,
-                        astroId: astroData._id,
-                        userName1: `${userData.firstName} ${userData.lastName}`,
-                        userName2: `${astroData.firstName} ${astroData.lastName}`,
-                        messageDetail: messageDetail,
-                    }
-                    let saveChat = await chatModel.create(obj);
-                    if (saveChat) {
-                        return res.status(200).json({ status: 200, message: "Message send successfully", data: saveChat });
-                    }
+                    return res.status(200).json({ status: 200, message: "Order not found.", data: saveChat });
                 }
             }
         }
@@ -170,11 +198,11 @@ exports.userChat = async (req, res) => {
 };
 exports.viewChat = async (req, res) => {
     try {
-        let userData = await userModel.findOne({ _id: req.body.userId });
+        let userData = await userModel.findOne({ _id: req.query.userId });
         if (!userData) {
             return res.status(404).json({ status: 404, message: "User not found.", data: {} });
         }
-        let astroData = await astrologer.findOne({ _id: req.body.userId });
+        let astroData = await astrologer.findOne({ _id: req.query.userId });
         if (!astroData) {
             return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
         }
@@ -229,21 +257,17 @@ exports.viewChat = async (req, res) => {
 };
 exports.chattingHistory = async (req, res) => {
     try {
-        let userData = await userModel.findOne({ _id: req.body.userId });
+        let userData = await userModel.findOne({ _id: req.params.userId });
         if (!userData) {
             return res.status(404).json({ status: 404, message: "User not found.", data: {} });
         }
-        let astroData = await astrologer.findOne({ _id: req.body.userId });
+        let astroData = await astrologer.findOne({ _id: req.params.userId });
         if (!astroData) {
             return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
         }
         if (astroData != (null || undefined) && userData == (null || undefined)) {
             let query = {};
-            if (req.query.userName != (null || undefined)) {
-                query.$or = [{ userName1: req.query.userName, astroId: astroData._id, deleteChat2: false }]
-            } else {
-                query.$or = [{ astroId: astroData._id, deleteChat2: false }]
-            }
+            query.$or = [{ astroId: astroData._id, deleteChat2: false }];
             let unRead = [];
             let result = await chatModel.find(query).sort({ "messages.createdAt": -1 }).populate("userId astroId", "firstName lastName");
             if (result.length == 0) {
@@ -270,11 +294,7 @@ exports.chattingHistory = async (req, res) => {
         }
         if (astroData == (null || undefined) && userData != (null || undefined)) {
             let query = {};
-            if (req.query.userName != (null || undefined)) {
-                query.$or = [{ userName2: req.query.userName, userId: userData._id, deleteChat1: false }]
-            } else {
-                query.$or = [{ userId: userData._id, deleteChat1: false }]
-            }
+            query.$or = [{ userId: userData._id, deleteChat1: false }];
             let unRead = [];
             let result = await chatModel.find(query).sort({ "messages.createdAt": -1 }).populate("userId astroId", "firstName lastName");
             if (result.length == 0) {
@@ -305,11 +325,11 @@ exports.chattingHistory = async (req, res) => {
 };
 exports.deleteChat = async (req, res) => {
     try {
-        let userData = await userModel.findOne({ _id: req.body.userId });
+        let userData = await userModel.findOne({ _id: req.query.userId });
         if (!userData) {
             return res.status(404).json({ status: 404, message: "User not found.", data: {} });
         }
-        let astroData = await astrologer.findOne({ _id: req.body.userId });
+        let astroData = await astrologer.findOne({ _id: req.query.userId });
         if (!astroData) {
             return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
         }
@@ -460,11 +480,11 @@ exports.deleteChat = async (req, res) => {
 };
 exports.clearChat = async (req, res) => {
     try {
-        let userData = await userModel.findOne({ _id: req.body.userId });
+        let userData = await userModel.findOne({ _id: req.query.userId });
         if (!userData) {
             return res.status(404).json({ status: 404, message: "User not found.", data: {} });
         }
-        let astroData = await astrologer.findOne({ _id: req.body.userId });
+        let astroData = await astrologer.findOne({ _id: req.query.userId });
         if (!astroData) {
             return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
         }
@@ -537,11 +557,11 @@ exports.clearChat = async (req, res) => {
 };
 exports.deleteAllChat = async (req, res) => {
     try {
-        let userData = await userModel.findOne({ _id: req.body.userId });
+        let userData = await userModel.findOne({ _id: req.params.userId });
         if (!userData) {
             return res.status(404).json({ status: 404, message: "User not found.", data: {} });
         }
-        let astroData = await astrologer.findOne({ _id: req.body.userId });
+        let astroData = await astrologer.findOne({ _id: req.params.userId });
         if (!astroData) {
             return res.status(404).json({ status: 404, message: "Data not found.", data: {} });
         }
@@ -748,3 +768,11 @@ exports.deleteMessage = async (req, res) => {
         return res.status(500).json({ status: 500, message: 'Internal server error' });
     }
 };
+const reffralCode = async () => {
+    var digits = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let OTP = '';
+    for (let i = 0; i < 9; i++) {
+        OTP += digits[Math.floor(Math.random() * 36)];
+    }
+    return OTP;
+}
