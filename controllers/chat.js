@@ -187,7 +187,7 @@ exports.userChat = async (req, res) => {
                         return res.status(200).json({ status: 200, message: "Message send successfully", data: saveChat });
                     }
                 } else {
-                    return res.status(200).json({ status: 200, message: "Order not found.", data: saveChat });
+                    return res.status(200).json({ status: 200, message: "Order not found.", data: {} });
                 }
             }
         }
