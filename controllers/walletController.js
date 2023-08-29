@@ -10,7 +10,7 @@ exports.addMoney = catchAsync(async (req, res) => {
     wallet.balance = wallet.balance + req.body.balance;
     const w = await wallet.save();
 
-    res.status(200).json({
+    return res.status(200).json({
         status: "success",
         data: w,
     });
@@ -22,7 +22,7 @@ exports.removeMoney = catchAsync(async (req, res) => {
     wallet.balance = wallet.balance - req.body.balance;
     const w = await wallet.save();
 
-    res.status(200).json({
+    return res.status(200).json({
         status: "success",
         data: w,
     });
@@ -31,7 +31,7 @@ exports.removeMoney = catchAsync(async (req, res) => {
 exports.getWallet = catchAsync(async (req, res) => {
     console.log(req.user);
     const wallet = await Wallet.findOne({ user: req.user });
-    res.status(200).json({
+    return res.status(200).json({
         status: "success",
         data: wallet,
     });
@@ -42,7 +42,7 @@ exports.getWallet = catchAsync(async (req, res) => {
 exports.getWalletById = catchAsync(async (req, res) => {
     const w = await Wallet.findOne({ _id: req.params.id });
 
-    res.status(200).json({
+    return res.status(200).json({
         status: "success",
         data: w,
     });
@@ -51,14 +51,14 @@ exports.getWalletById = catchAsync(async (req, res) => {
 exports.createWallet = catchAsync(async (req, res) => {
     const getDetails = await User.findById(req.body.userId);
     if (!getDetails) {
-        res.status(404).json({ message: "Enter the correct id", status: 404 });
+        return res.status(404).json({ message: "Enter the correct id", status: 404 });
     } else {
         const wallet = await Wallet.findOne({ user: req.body.userId });
         if (wallet) {
-            res.status(409).json({ message: "This user id wallet already exit", status: 409 });
+            return res.status(409).json({ message: "This user id wallet already exit", status: 409 });
         }
         const w = await Wallet.create({ user: req.body.userId });
-        res.status(200).json({ status: "success", data: w, });
+        return res.status(200).json({ status: "success", data: w, });
     }
 });
 exports.createTransation = catchAsync(async (req, res) => {
@@ -66,13 +66,13 @@ exports.createTransation = catchAsync(async (req, res) => {
         if (req.body.user != (null || undefined)) {
             const getDetails = await User.findById(req.body.user);
             if (!getDetails) {
-                res.status(404).json({ message: "Enter the correct id", status: 404 });
+                return res.status(404).json({ message: "Enter the correct id", status: 404 });
             }
         }
         if (req.body.astrologer != (null || undefined)) {
             const getDetails1 = await astrologer.findById(req.body.astrologer);
             if (!getDetails1) {
-                res.status(404).json({ message: "Enter the correct id", status: 404 });
+                return res.status(404).json({ message: "Enter the correct id", status: 404 });
             }
         }
         let date = new Date(Date.now()).getDate();
@@ -130,9 +130,9 @@ exports.createTransation = catchAsync(async (req, res) => {
             }
             await transaction.create(obj1);
         }
-        res.status(200).json({ message: "Transation create successfully.", status: 200 });
+        return res.status(200).json({ message: "Transation create successfully.", status: 200 });
     } catch (error) {
-        res.status(501).json({ message: "internal server error", status: 501 });
+        return res.status(501).json({ message: "internal server error", status: 501 });
 
     }
 
@@ -142,23 +142,23 @@ exports.listTransation = catchAsync(async (req, res) => {
         if (req.body.user != (null || undefined)) {
             const getDetails = await User.findById(req.body.user);
             if (!getDetails) {
-                res.status(404).json({ message: "Enter the correct id", status: 404 });
+                return res.status(404).json({ message: "Enter the correct id", status: 404 });
             }
         }
         if (req.body.astrologer != (null || undefined)) {
             const getDetails1 = await astrologer.findById(req.body.astrologer);
             if (!getDetails1) {
-                res.status(404).json({ message: "Enter the correct id", status: 404 });
+                return res.status(404).json({ message: "Enter the correct id", status: 404 });
             }
         }
         const findTransation = await transaction.find({ $or: [{ user: req.body.user }, { astrologer: req.body.astrologer }] });
         if (findTransation.length > 0) {
-            res.status(200).json({ message: "Transaction found successfully.", status: 200, data: findTransation });
+            return res.status(200).json({ message: "Transaction found successfully.", status: 200, data: findTransation });
         } else {
-            res.status(404).json({ message: "Transaction not found", status: 404 });
+            return res.status(404).json({ message: "Transaction not found", status: 404 });
         }
     } catch (error) {
-        res.status(501).json({ message: "internal server error", status: 501 });
+        return res.status(501).json({ message: "internal server error", status: 501 });
 
     }
 
@@ -167,12 +167,12 @@ exports.getTransationById = catchAsync(async (req, res) => {
     try {
         const findTransation = await transaction.findOne({ _id: req.params.id });
         if (findTransation) {
-            res.status(200).json({ message: "Transaction found successfully.", status: 200, data: findTransation });
+            return res.status(200).json({ message: "Transaction found successfully.", status: 200, data: findTransation });
         } else {
-            res.status(404).json({ message: "Transaction not found", status: 404 });
+            return res.status(404).json({ message: "Transaction not found", status: 404 });
         }
 
     } catch (error) {
-        res.status(501).json({ message: "internal server error", status: 501 });
+        return res.status(501).json({ message: "internal server error", status: 501 });
     }
 });
