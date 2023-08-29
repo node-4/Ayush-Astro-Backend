@@ -7,9 +7,12 @@ const astrologer = require('../models/astrologer');
 exports.addMoney = catchAsync(async (req, res) => {
     const wallet = await Wallet.findOne({ user: req.body.user });
     console.log(wallet);
+    if (!wallet) {
+        const w = await Wallet.create({ user: req.body.user, balance: req.body.balance });
+        return res.status(200).json({ status: "success", data: w, });
+    }
     wallet.balance = wallet.balance + req.body.balance;
     const w = await wallet.save();
-
     return res.status(200).json({
         status: "success",
         data: w,
@@ -18,7 +21,9 @@ exports.addMoney = catchAsync(async (req, res) => {
 
 exports.removeMoney = catchAsync(async (req, res) => {
     const wallet = await Wallet.findOne({ user: req.body.user });
-
+    if (!wallet) {
+        return res.status(200).json({ status: "success", data: {} });
+    }
     wallet.balance = wallet.balance - req.body.balance;
     const w = await wallet.save();
 
